@@ -32,7 +32,7 @@
   <script>
     console.log("JS LOADED");
 
-    // 🔑 PUT YOUR REAL ANON KEY HERE
+    // 🔑 REPLACE WITH YOUR REAL ANON KEY
     const sb = supabase.createClient(
       "https://axjzwtfzbwmemgxucucq.supabase.co",
       "sb_publishable_P6qpYiubu2DRGLjdHkDnqA_TMSUC08G"
@@ -91,7 +91,7 @@
         return;
       }
 
-      // 🔒 GET PROFILE (SAFE VERSION)
+      // 🔒 GET PROFILE
       const { data: profile, error: profileError } = await sb
         .from("profiles")
         .select("is_pro")
@@ -158,12 +158,18 @@
       loadVideos();
     }
 
-    // 💰 STRIPE
+    // 💰 STRIPE UPGRADE (FULL WORKING)
     async function upgrade() {
       console.log("UPGRADE CLICKED");
 
       const res = await fetch("/api/create-checkout", {
-        method: "POST"
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          userId: user.id
+        })
       });
 
       const data = await res.json();
