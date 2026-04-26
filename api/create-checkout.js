@@ -6,40 +6,45 @@ export default async function handler(req, res) {
   try {
     console.log("API HIT");
 
-    // ✅ Safety check
+    // ✅ Check key
     if (!process.env.STRIPE_SECRET_KEY) {
       return res.status(500).json({
         error: "Stripe key missing"
       });
     }
 
-    // ✅ Only allow POST
+    // ✅ Only POST allowed
     if (req.method !== "POST") {
       return res.status(405).json({
         error: "Method not allowed"
       });
     }
 
-    // 💰 Create Stripe checkout session
+    // 🔥 Get user ID
+    const { userId } = req.body;
+
+    if (!userId) {
+      return res.status(400).json({
+        error: "Missing userId"
+      });
+    }
+
+    // 💰 Create checkout session
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
       mode: "subscription",
 
       line_items: [
         {
-          price_data: {
-            currency: "usd",
-            product_data: {
-              name: "LuxClip Pro"
-            },
-            unit_amount: 900, // $9/month
-            recurring: {
-              interval: "month"
-            }
-          },
+          price: "price_1TQS60GsAAuu4fir9M1AOkBg",
           quantity: 1
         }
       ],
+
+      // 🔥 Link Stripe → your user
+      metadata: {
+        user_id: userId
+      },
 
       success_url: `${req.headers.origin}/dashboard.html`,
       cancel_url: `${req.headers.origin}/dashboard.html`
