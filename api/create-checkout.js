@@ -1,8 +1,18 @@
 import Stripe from "stripe";
 
 export default async function handler(req, res) {
+  console.log("API HIT");
+
   try {
-    console.log("API HIT");
+    // ✅ DEBUG LINE (ADD THIS)
+    console.log("KEY:", process.env.STRIPE_SECRET_KEY?.slice(0, 10));
+
+    // ✅ Only POST
+    if (req.method !== "POST") {
+      return res.status(405).json({
+        error: "Method not allowed"
+      });
+    }
 
     // ✅ Check key exists
     if (!process.env.STRIPE_SECRET_KEY) {
@@ -13,20 +23,12 @@ export default async function handler(req, res) {
 
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-    // ✅ Only POST allowed
-    if (req.method !== "POST") {
-      return res.status(405).json({
-        error: "Method not allowed"
-      });
-    }
-
-    // ✅ Create checkout session
     const session = await stripe.checkout.sessions.create({
       mode: "subscription",
       payment_method_types: ["card"],
       line_items: [
         {
-          price: "price_1TQS60GsAAuu4fir9MlAOkBg", // YOUR PRICE ID
+          price: "price_1TQS60GsAAuu4fir9MlAOkBg",
           quantity: 1
         }
       ],
