@@ -32,7 +32,7 @@
   <script>
     console.log("JS LOADED");
 
-    // ✅ REPLACE WITH YOUR REAL ANON KEY
+    // 🔑 PUT YOUR REAL ANON KEY HERE
     const sb = supabase.createClient(
       "https://axjzwtfzbwmemgxucucq.supabase.co",
       "sb_publishable_P6qpYiubu2DRGLjdHkDnqA_TMSUC08G"
@@ -91,12 +91,12 @@
         return;
       }
 
-      // 🔒 Get user profile
+      // 🔒 GET PROFILE (SAFE VERSION)
       const { data: profile, error: profileError } = await sb
         .from("profiles")
         .select("is_pro")
         .eq("id", user.id)
-        .single();
+        .maybeSingle();
 
       if (profileError) {
         console.error(profileError);
@@ -104,19 +104,25 @@
         return;
       }
 
-      // 🔒 Check usage
+      if (!profile) {
+        alert("Profile not found. Refresh page.");
+        return;
+      }
+
+      // 🔒 GET USAGE
       const { data: existing } = await sb
         .from("videos")
         .select("id")
         .eq("user_id", user.id);
 
-      // 🚨 LIMIT = 3 (only for free users)
+      // 🚨 FREE LIMIT
       if (!profile.is_pro && existing.length >= 3) {
         alert("🚀 Free limit reached. Upgrade to continue.");
         upgrade();
         return;
       }
 
+      // ➕ CREATE VIDEO
       const { data: video } = await sb
         .from("videos")
         .insert([
@@ -129,6 +135,7 @@
         .select()
         .single();
 
+      // 🤖 CALL API
       const res = await fetch("/api/generate-script", {
         method: "POST",
         headers: {
@@ -139,6 +146,7 @@
 
       const data = await res.json();
 
+      // 💾 SAVE RESULT
       await sb
         .from("videos")
         .update({
