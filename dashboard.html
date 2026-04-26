@@ -8,6 +8,7 @@
 </head>
 
 <body>
+
   <h1>LuxClip Dashboard</h1>
 
   <p id="userEmail"></p>
@@ -32,7 +33,7 @@
   <script>
     console.log("JS LOADED");
 
-    // 🔑 REPLACE WITH YOUR REAL ANON KEY
+    // 🔑 REPLACE THIS WITH YOUR REAL KEY
     const sb = supabase.createClient(
       "https://axjzwtfzbwmemgxucucq.supabase.co",
       "sb_publishable_P6qpYiubu2DRGLjdHkDnqA_TMSUC08G"
@@ -91,38 +92,28 @@
         return;
       }
 
-      // 🔒 GET PROFILE
-      const { data: profile, error: profileError } = await sb
+      const { data: profile } = await sb
         .from("profiles")
         .select("is_pro")
         .eq("id", user.id)
         .maybeSingle();
 
-      if (profileError) {
-        console.error(profileError);
-        alert("Error loading profile");
-        return;
-      }
-
       if (!profile) {
-        alert("Profile not found. Refresh page.");
+        alert("Profile not found");
         return;
       }
 
-      // 🔒 GET USAGE
       const { data: existing } = await sb
         .from("videos")
         .select("id")
         .eq("user_id", user.id);
 
-      // 🚨 FREE LIMIT
       if (!profile.is_pro && existing.length >= 3) {
-        alert("🚀 Free limit reached. Upgrade to continue.");
+        alert("🚀 Free limit reached");
         upgrade();
         return;
       }
 
-      // ➕ CREATE VIDEO
       const { data: video } = await sb
         .from("videos")
         .insert([
@@ -135,7 +126,6 @@
         .select()
         .single();
 
-      // 🤖 CALL API
       const res = await fetch("/api/generate-script", {
         method: "POST",
         headers: {
@@ -146,7 +136,6 @@
 
       const data = await res.json();
 
-      // 💾 SAVE RESULT
       await sb
         .from("videos")
         .update({
@@ -158,45 +147,13 @@
       loadVideos();
     }
 
-    // 💰 STRIPE UPGRADE (FULL WORKING)
     async function upgrade() {
-  console.log("UPGRADE CLICKED");
-
-  // safety check
-  if (!user) {
-    alert("You must be logged in");
-    return;
-  }
-
-  const res = await fetch("/api/create-checkout", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      userId: user.id
-    })
-  });
-
-  let data;
-
-  try {
-    data = await res.json();
-  } catch (err) {
-    console.error("BAD RESPONSE:", err);
-    alert("Server error — check logs");
-    return;
-  }
-
-  console.log("CHECKOUT:", data);
-
-  if (data.url) {
-    window.location.href = data.url;
-  } else {
-    alert(data.error || "Checkout failed");
-  }
-}
       console.log("UPGRADE CLICKED");
+
+      if (!user) {
+        alert("Not logged in");
+        return;
+      }
 
       const res = await fetch("/api/create-checkout", {
         method: "POST",
@@ -210,12 +167,10 @@
 
       const data = await res.json();
 
-      console.log("CHECKOUT:", data);
-
       if (data.url) {
         window.location.href = data.url;
       } else {
-        alert("Checkout failed");
+        alert(data.error || "Checkout failed");
       }
     }
 
@@ -226,5 +181,6 @@
 
     init();
   </script>
+
 </body>
 </html>
