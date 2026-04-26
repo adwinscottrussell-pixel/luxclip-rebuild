@@ -36,7 +36,7 @@ export default async function handler(req, res) {
 
       line_items: [
         {
-          price: "price_1TQS60GsAAuu4fir9M1AOkBg",
+          price: "price: "price_1TQS60GsAAuu4fir9MlAOkBg",
           quantity: 1
         }
       ],
