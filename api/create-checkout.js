@@ -1,157 +1,58 @@
-<script>
-  console.log("JS LOADED");
+import Stripe from "stripe";
 
-  const sb = supabase.createClient(
-    "https://axjzwtfzbwmemgxucucq.supabase.co",
-    "sb_publishable_P6qpYiubu2DRGLjdHkDnqA_TMSUC08G"
-  );
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-  let user = null;
+export default async function handler(req, res) {
+  try {
+    console.log("API HIT");
 
-  async function init() {
-    console.log("INIT RUNNING");
-
-    const { data } = await sb.auth.getSession();
-    user = data.session?.user;
-
-    if (!user) {
-      window.location.href = "/";
-      return;
+    // ✅ Only POST allowed
+    if (req.method !== "POST") {
+      return res.status(405).json({ error: "Method not allowed" });
     }
 
-    document.getElementById("userEmail").innerText =
-      "Logged in as: " + user.email;
+    // ✅ Parse body safely
+    const body = typeof req.body === "string"
+      ? JSON.parse(req.body)
+      : req.body;
 
-    loadVideos();
-  }
+    const userId = body?.userId;
 
-  async function loadVideos() {
-    const { data } = await sb
-      .from("videos")
-      .select("*")
-      .eq("user_id", user.id)
-      .order("created_at", { ascending: false });
-
-    const container = document.getElementById("videos");
-    container.innerHTML = "";
-
-    data.forEach((video) => {
-      const div = document.createElement("div");
-
-      div.innerHTML = `
-        <p><b>${video.prompt}</b></p>
-        <p>Status: ${video.status}</p>
-        <p>${video.script || ""}</p>
-        <hr>
-      `;
-
-      container.appendChild(div);
-    });
-  }
-
-  async function generate() {
-    console.log("GENERATE CLICKED");
-
-    const prompt = document.getElementById("prompt").value;
-
-    if (!prompt) {
-      alert("Enter a prompt");
-      return;
+    if (!userId) {
+      return res.status(400).json({ error: "Missing userId" });
     }
 
-    const { data: profile } = await sb
-      .from("profiles")
-      .select("is_pro")
-      .eq("id", user.id)
-      .maybeSingle();
-
-    if (!profile) {
-      alert("Profile not found");
-      return;
+    if (!process.env.STRIPE_SECRET_KEY) {
+      return res.status(500).json({ error: "Stripe key missing" });
     }
 
-    const { data: existing } = await sb
-      .from("videos")
-      .select("id")
-      .eq("user_id", user.id);
+    // 💰 Create checkout session
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ["card"],
+      mode: "subscription",
 
-    if (!profile.is_pro && existing.length >= 3) {
-      alert("🚀 Free limit reached");
-      upgrade();
-      return;
-    }
-
-    const { data: video } = await sb
-      .from("videos")
-      .insert([
+      line_items: [
         {
-          user_id: user.id,
-          prompt: prompt,
-          status: "processing"
+          price: "price_1TQS60GsAAuu4fir9MlAOkBg",
+          quantity: 1
         }
-      ])
-      .select()
-      .single();
+      ],
 
-    const res = await fetch("/api/generate-script", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
+      metadata: {
+        user_id: userId
       },
-      body: JSON.stringify({ prompt })
+
+      success_url: `${req.headers.origin}/dashboard.html`,
+      cancel_url: `${req.headers.origin}/dashboard.html`
     });
 
-    const data = await res.json();
+    return res.status(200).json({ url: session.url });
 
-    await sb
-      .from("videos")
-      .update({
-        script: data.script,
-        status: "script_ready"
-      })
-      .eq("id", video.id);
+  } catch (err) {
+    console.error("🔥 STRIPE ERROR:", err);
 
-    loadVideos();
-  }
-
-  async function upgrade() {
-    console.log("UPGRADE CLICKED");
-
-    if (!user) {
-      alert("Not logged in");
-      return;
-    }
-
-    const res = await fetch("/api/create-checkout", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        userId: user.id
-      })
+    return res.status(500).json({
+      error: err.message || "Stripe failed"
     });
-
-    let data;
-
-    try {
-      data = await res.json();
-    } catch {
-      alert("Server error");
-      return;
-    }
-
-    if (data.url) {
-      window.location.href = data.url;
-    } else {
-      alert(data.error || "Checkout failed");
-    }
   }
-
-  async function logout() {
-    await sb.auth.signOut();
-    window.location.href = "/";
-  }
-
-  init();
-</script>
+}
