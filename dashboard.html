@@ -3,7 +3,7 @@
 <head>
   <title>LuxClip Dashboard</title>
 
-  <!-- ✅ LOAD SUPABASE ONCE -->
+  <!-- Supabase -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
@@ -32,10 +32,10 @@
   <script>
     console.log("JS LOADED");
 
-    // ✅ ONLY DECLARE ONCE
+    // ✅ REPLACE WITH YOUR REAL ANON KEY
     const sb = supabase.createClient(
       "https://axjzwtfzbwmemgxucucq.supabase.co",
-      "YOUR_SUPABASE_ANON_KEY"
+      "sb_publishable_P6qpYiubu2DRGLjdHkDnqA_TMSUC08G"
     );
 
     let user = null;
@@ -88,6 +88,32 @@
 
       if (!prompt) {
         alert("Enter a prompt");
+        return;
+      }
+
+      // 🔒 Get user profile
+      const { data: profile, error: profileError } = await sb
+        .from("profiles")
+        .select("is_pro")
+        .eq("id", user.id)
+        .single();
+
+      if (profileError) {
+        console.error(profileError);
+        alert("Error loading profile");
+        return;
+      }
+
+      // 🔒 Check usage
+      const { data: existing } = await sb
+        .from("videos")
+        .select("id")
+        .eq("user_id", user.id);
+
+      // 🚨 LIMIT = 3 (only for free users)
+      if (!profile.is_pro && existing.length >= 3) {
+        alert("🚀 Free limit reached. Upgrade to continue.");
+        upgrade();
         return;
       }
 
