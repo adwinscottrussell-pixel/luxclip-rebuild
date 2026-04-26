@@ -47,6 +47,19 @@
       }
     }
   </script>
+<script>
+async function checkPro() {
+  const res = await fetch("/api/status?email=test@luxclip.ai");
+  const data = await res.json();
 
+  if (data.pro) {
+    const msg = document.createElement("h2");
+    msg.innerText = "🚀 PRO UNLOCKED";
+    document.body.appendChild(msg);
+  }
+}
+
+checkPro();
+</script>
 </body>
 </html>
