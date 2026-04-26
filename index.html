@@ -1,0 +1,3546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>LuxClip AI — Short-Form Video, Elevated</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header>
+  <button id="auth-btn" class="btn btn-ghost btn-sm">
+    Login / Sign Up
+  </button>
+</header>
+<div id="app-loading">
+  <div class="load-logo">Lux<span>Clip</span></div>
+  <div class="load-ring"></div>
+  <div class="load-text">Loading…</div>
+</div>
+
+<!-- ══════════════════════════════
+     LANDING PAGE
+══════════════════════════════ -->
+<div class="page" id="page-landing">
+  <nav class="l-nav" id="l-nav">
+    <div class="wordmark" onclick="go('landing')">Lux<span>Clip</span></div>
+    <div class="l-nav-links">
+      <a onclick="scrollTo(0,600)">Features</a>
+      <a onclick="scrollTo(0,1400)">How it Works</a>
+      <a onclick="go('pricing')">Pricing</a>
+    </div>
+    <div class="l-nav-cta">
+      <button id="auth-btn" class="btn btn-ghost btn-sm">Sign In</button>
+      <button class="btn btn-gold btn-sm" onclick="go('auth')">Start Free →</button>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-badge"><span class="hero-badge-dot"></span> Your AI Instagram Content Team</div>
+    <h1 class="hero-title">
+      7 days of content.<br>
+      <em>Generated in seconds.</em>
+      <span class="line2">Ready to post.</span>
+    </h1>
+    <p class="hero-sub">Tell us your niche and goal. LuxClip AI builds your full content strategy, generates cinematic videos for each post, and writes captions — so you never run out of ideas again.</p>
+    <div class="hero-actions">
+      <button class="btn btn-gold btn-xl" onclick="go('auth')">Generate My Content Plan Free</button>
+      <button class="btn btn-outline btn-xl" onclick="go('pricing')">View Pricing</button>
+    </div>
+    <div class="hero-proof">
+      <div class="proof-avatars">
+        <div class="proof-avatar">JM</div>
+        <div class="proof-avatar">SR</div>
+        <div class="proof-avatar">KL</div>
+        <div class="proof-avatar">AT</div>
+      </div>
+      <div class="proof-text">
+        <div class="proof-stars">★★★★★</div>
+        <div>Loved by <strong>2,400+</strong> creators & brands</div>
+      </div>
+    </div>
+
+    <div class="hero-mockup">
+      <div class="mockup-bar">
+        <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+        <div class="mockup-url">app.LuxClip.ai/dashboard</div>
+      </div>
+      <div class="mockup-body">
+        <div class="mockup-sidebar">
+          <div>
+            <div class="mock-label">Your Niche</div>
+            <div class="mock-textarea">Luxury fashion & lifestyle brands</div>
+          </div>
+          <div>
+            <div class="mock-label">Goal</div>
+            <div class="mock-tones">
+              <div class="mock-tone a">📈 Grow</div>
+              <div class="mock-tone">💰 Sell</div>
+              <div class="mock-tone">🎓 Educate</div>
+            </div>
+          </div>
+          <div class="mock-btn">✦ Generate 7-Day Plan</div>
+        </div>
+        <div class="mockup-grid">
+          <div class="mock-card"><div class="mock-thumb"><div class="mock-thumb-badge">Day 1 · Reel</div></div><div class="mock-card-body"><div class="mock-card-line gold"></div><div class="mock-card-line short"></div></div></div>
+          <div class="mock-card"><div class="mock-thumb" style="opacity:.7"><div class="mock-thumb-badge" style="opacity:.5">Day 2 · Hook</div></div><div class="mock-card-body"><div class="mock-card-line"></div><div class="mock-card-line short"></div></div></div>
+          <div class="mock-card"><div class="mock-thumb"><div class="mock-thumb-badge">Day 3 · Reel</div></div><div class="mock-card-body"><div class="mock-card-line gold"></div><div class="mock-card-line short"></div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-tag">Features</div>
+    <h2 class="section-title">Your complete <em>Instagram content system</em></h2>
+    <div class="features-grid">
+      <div class="feature-tile">
+        <div class="feature-icon">📅</div>
+        <div class="feature-name">7-Day Content Strategy</div>
+        <div class="feature-desc">Answer 3 questions about your niche, goal and tone. GPT-4o builds a full 7-day posting calendar with hooks, topics and video concepts.</div>
+      </div>
+      <div class="feature-tile">
+        <div class="feature-icon">🎬</div>
+        <div class="feature-name">One-Click Video Generation</div>
+        <div class="feature-desc">Click any day in your calendar and generate a cinematic AI video in seconds. Upload your product photo for even better results.</div>
+      </div>
+      <div class="feature-tile">
+        <div class="feature-icon">✍️</div>
+        <div class="feature-name">AI-Written Captions</div>
+        <div class="feature-desc">Every video comes with a scroll-stopping caption crafted in your brand tone — luxury, bold, minimal, playful or cinematic.</div>
+      </div>
+      <div class="feature-tile">
+        <div class="feature-icon">📸</div>
+        <div class="feature-name">Product Photo Animation</div>
+        <div class="feature-desc">Upload a photo of your product and watch AI turn it into a cinematic video with professional lighting and camera movement.</div>
+      </div>
+      <div class="feature-tile">
+        <div class="feature-icon">📚</div>
+        <div class="feature-name">Content Library</div>
+        <div class="feature-desc">All your generated videos saved in one place. Download, copy captions or post directly to Instagram.</div>
+      </div>
+      <div class="feature-tile">
+        <div class="feature-icon">📤</div>
+        <div class="feature-name">Instagram Posting</div>
+        <div class="feature-desc">Schedule and publish directly to Instagram. Your content goes live without ever leaving the app.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="section-tag">How it Works</div>
+    <h2 class="section-title">From zero to 7 days of content <em>in 2 minutes</em></h2>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <div class="step-title">Tell us your niche</div>
+        <div class="step-desc">Enter your niche, pick your goal (grow, sell or educate) and choose your brand tone. Takes 30 seconds.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <div class="step-title">Get your 7-day plan</div>
+        <div class="step-desc">AI generates a full content calendar with hooks, topics and video prompts for every single day.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <div class="step-title">Generate your Reels</div>
+        <div class="step-desc">Click any day, upload your product photo, and get a cinematic AI video with caption — ready in 30 seconds.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">04</div>
+        <div class="step-title">Download & post</div>
+        <div class="step-desc">Download your video, copy the caption and post to Instagram. Your audience grows while you focus on your business.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="section-tag">Testimonials</div>
+    <h2 class="section-title">Creators <em>love it</em></h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="t-stars">★★★★★</div>
+        <div class="t-quote">"LuxClip cut my content production time by 80%. The captions are genuinely good — I barely edit them."</div>
+        <div class="t-author"><div class="t-avatar">JM</div><div><div class="t-name">Jade Monroe</div><div class="t-role">Lifestyle Creator · 280K followers</div></div></div>
+      </div>
+      <div class="testimonial-card">
+        <div class="t-stars">★★★★★</div>
+        <div class="t-quote">"Finally an AI tool built for luxury brands. The output quality and tone options are unmatched."</div>
+        <div class="t-author"><div class="t-avatar">SR</div><div><div class="t-name">Sebastian R.</div><div class="t-role">Brand Director · Maison Éclat</div></div></div>
+      </div>
+      <div class="testimonial-card">
+        <div class="t-stars">★★★★★</div>
+        <div class="t-quote">"My engagement went up 3x in two weeks. The cinematic tone is *chef's kiss*. Worth every penny."</div>
+        <div class="t-author"><div class="t-avatar">KL</div><div><div class="t-name">Kira Lenz</div><div class="t-role">Fashion Photographer</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;text-align:center">
+    <h2 class="section-title" style="margin:0 auto 20px;max-width:none;font-size:clamp(2rem,4vw,3rem)">Ready to create content that <em>converts?</em></h2>
+    <p style="color:var(--muted);margin-bottom:40px;font-weight:300">Join 2,400+ creators using LuxClip AI. No credit card required.</p>
+    <button class="btn btn-gold btn-xl" onclick="go('auth')">Start Free — 3 Videos on Us →</button>
+  </section>
+
+  <footer class="l-footer">
+    <div class="wordmark" style="font-size:1.1rem;cursor:pointer" onclick="go('landing')">Lux<span style="color:var(--text);font-style:italic">Reel</span></div>
+    <div class="l-footer-copy">© 2025 LuxClip AI. All rights reserved.</div>
+    <div class="l-footer-links">
+      <a>Privacy</a><a>Terms</a><a>Support</a><a onclick="go('pricing')">Pricing</a>
+    </div>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════
+     AUTH PAGE
+══════════════════════════════ -->
+<div class="page" id="page-auth">
+  <div style="display:flex;min-height:100vh;">
+    <div class="auth-left">
+      <div class="auth-visual">
+        <h2 class="auth-headline">Turn prompts into<br><em>premium content</em><br>in seconds.</h2>
+        <p class="auth-sub">Join thousands of creators and brands using LuxClip AI to generate, caption, and post short-form video — without the hours.</p>
+      </div>
+    </div>
+    <div class="auth-right">
+      <div class="auth-logo" onclick="go('landing')">Lux<span>Clip</span></div>
+      <div class="auth-tabs" id="auth-tabs">
+        <button class="auth-tab active" onclick="switchAuth('signup')">Create Account</button>
+        <button class="auth-tab" onclick="switchAuth('signin')">Sign In</button>
+      </div>
+      <div class="auth-form" id="auth-form">
+        <div id="signup-fields">
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">First Name</label><input class="form-input" placeholder="Alex" /></div>
+            <div class="form-group"><label class="form-label">Last Name</label><input class="form-input" placeholder="Smith" /></div>
+          </div>
+        </div>
+        <div class="form-group"><label class="form-label">Email</label><input class="form-input" id="auth-email" placeholder="you@brand.com" /></div>
+        <div class="form-group"><label class="form-label">Password</label><input class="form-input" type="password" id="auth-password" placeholder="••••••••" />
+          <div style="text-align:right;margin-top:4px"><a onclick="handleForgotPassword()" style="font-size:.75rem;color:var(--gold);cursor:pointer">Forgot password?</a></div>
+        </div>
+        <button class="btn btn-gold btn-md btn-block" style="margin-top:4px" id="auth-submit-btn" onclick="handleAuth()">Create Free Account →</button>
+        <div class="auth-error" id="auth-error"></div>
+        <div class="auth-divider"><span>or</span></div>
+        <button class="social-btn" onclick="handleAuth()">
+          <svg width="16" height="16" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+          Continue with Google
+        </button>
+        <div class="auth-footer-text" id="auth-switch-text">Already have an account? <a onclick="switchAuth('signin')">Sign in</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     DASHBOARD (App Shell)
+══════════════════════════════ -->
+<div class="page" id="page-dashboard">
+  <div class="app-shell">
+    <aside class="app-sidebar">
+      <div class="sidebar-logo" onclick="go('landing')">Lux<span>Clip</span></div>
+      <nav class="sidebar-nav">
+        <div class="nav-section-label">Studio</div>
+        <div class="nav-item active" onclick="setNavActive(this);showDashSection('main')"><span class="nav-item-icon">◈</span> Dashboard</div>
+        <div class="nav-item" onclick="setNavActive(this);showDashSection('video-library')"><span class="nav-item-icon">▦</span> Video Library</div>
+        <div class="nav-item" onclick="setNavActive(this);showDashSection('image-library')"><span class="nav-item-icon">🖼</span> Image Library</div>
+        <div class="nav-item" onclick="setNavActive(this);showDashSection('thumbnail-gen')"><span class="nav-item-icon">🎯</span> Thumbnail AI</div>
+        <div class="nav-item" onclick="setNavActive(this);showDashSection('templates')"><span class="nav-item-icon">✦</span> Templates</div>
+        <div class="nav-item" onclick="setNavActive(this);showDashSection('avatar-studio')"><span class="nav-item-icon">◎</span> Avatar Studio</div>         <div class="nav-section-label">Publish</div>
+        <div class="nav-item" onclick="setNavActive(this)"><span class="nav-item-icon">📤</span> Instagram</div>
+        <div class="nav-item" onclick="setNavActive(this)"><span class="nav-item-icon">📅</span> Scheduler</div>
+        <div class="nav-section-label">Account</div>
+        <div class="nav-item" onclick="go('pricing')"><span class="nav-item-icon">⬆</span> Upgrade</div>
+        <div class="nav-item" onclick="go('settings')"><span class="nav-item-icon">⚙</span> Settings</div>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="user-card" onclick="go('settings')">
+          <div class="user-avatar" id="sidebar-avatar">A</div>
+          <div class="user-info">
+            <div class="user-name" id="sidebar-name">Alex Smith</div>
+            <div class="user-plan">Free Plan · 3 videos left</div>
+          </div>
+        </div>
+        <button onclick="handleSignOut()" style="width:100%;margin-top:8px;padding:8px;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:.78rem;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s" onmouseover="this.style.color='var(--red)';this.style.borderColor='rgba(224,85,85,.3)'" onmouseout="this.style.color='var(--muted)';this.style.borderColor='var(--border)'">Sign out</button>
+      </div>
+    </aside>
+
+    <div style="display:flex;flex-direction:column;min-height:100vh;">
+      <div class="app-topbar">
+        <div class="topbar-title">Dashboard</div>
+        <div class="topbar-right">
+          <button class="notif-btn" title="Notifications">🔔</button>
+          <button class="btn btn-gold btn-sm" onclick="go('pricing')">⬆ Upgrade</button>
+        </div>
+      </div>
+
+      <div class="dash-content">
+        <!-- MAIN SECTION -->
+        <div id="dash-section-avatar-studio" style="display:none">   <div class="section-header" style="margin-bottom:24px">     <h2 style="font-size:1.4rem;font-weight:600;color:var(--text)">Avatar Studio</h2>     <p style="color:var(--muted);font-size:.9rem;margin-top:4px">Describe your avatar — get a cinematic image prompt + video script ready for AI generation.</p>   </div>   <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start">     <div class="card" style="padding:20px">       <div class="prompt-label" style="margin-bottom:6px">Brief / intent</div>       <textarea id="av-intent" class="prompt-textarea" rows="3" placeholder="e.g. A confident luxury real estate agent welcoming viewers to an exclusive property tour..."></textarea>       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px">         <div>           <div class="prompt-label" style="margin-bottom:4px">Gender</div>           <select id="av-gender" class="prompt-textarea" style="height:38px;padding:8px 10px;resize:none">             <option value="female">Female</option>             <option value="male">Male</option>             <option value="neutral">Gender neutral</option>           </select>         </div>         <div>           <div class="prompt-label" style="margin-bottom:4px">Age range</div>           <select id="av-age" class="prompt-textarea" style="height:38px;padding:8px 10px;resize:none">             <option value="25-35">25–35</option>             <option value="30-45">30–45</option>             <option value="40-55">40–55</option>           </select>         </div>       </div>       <div style="margin-top:12px">         <div class="prompt-label" style="margin-bottom:6px">Tone</div>         <div style="display:flex;flex-wrap:wrap;gap:6px" id="av-tone-chips">           <span class="av-chip active-chip" onclick="avChip(this,'tone')">Professional</span>           <span class="av-chip" onclick="avChip(this,'tone')">Warm & friendly</span>           <span class="av-chip" onclick="avChip(this,'tone')">Luxury & aspirational</span>           <span class="av-chip" onclick="avChip(this,'tone')">Energetic & bold</span>           <span class="av-chip" onclick="avChip(this,'tone')">Calm & authoritative</span>         </div>       </div>       <div style="margin-top:12px">         <div class="prompt-label" style="margin-bottom:6px">Environment</div>         <div style="display:flex;flex-wrap:wrap;gap:6px" id="av-env-chips">           <span class="av-chip active-chip" onclick="avChip(this,'env')">Modern office</span>           <span class="av-chip" onclick="avChip(this,'env')">Luxury interior</span>           <span class="av-chip" onclick="avChip(this,'env')">Studio / neutral bg</span>           <span class="av-chip" onclick="avChip(this,'env')">Outdoor urban</span>           <span class="av-chip" onclick="avChip(this,'env')">Home office</span>         </div>       </div>       <div style="margin-top:12px">         <div class="prompt-label" style="margin-bottom:6px">Script length</div>         <div style="display:flex;gap:6px" id="av-len-chips">           <span class="av-chip active-chip" onclick="avChip(this,'len')">15–20 sec</span>           <span class="av-chip" onclick="avChip(this,'len')">20–35 sec</span>           <span class="av-chip" onclick="avChip(this,'len')">35–45 sec</span>           <span class="av-chip" onclick="avChip(this,'len')">60 sec</span>         </div>       </div>       <button class="btn btn-gold" style="width:100%;margin-top:16px;padding:12px" id="av-gen-btn" onclick="generateAvatar()">✦ Generate Avatar Prompt</button>       <div id="av-error" style="display:none;color:var(--red);font-size:.8rem;margin-top:8px"></div>     </div>     <div id="av-results-col" style="display:none">       <div class="card" style="padding:20px;margin-bottom:14px">         <div style="display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:14px">           <div class="av-tab active-tab" id="av-tab-image" onclick="avTab('image')">Image Prompt</div>           <div class="av-tab" id="av-tab-script" onclick="avTab('script')">Script</div>           <div class="av-tab" id="av-tab-voice" onclick="avTab('voice')">Voice</div>         </div>         <div id="av-pane-image">           <div id="av-image-fields" style="font-size:.85rem;line-height:1.8;color:var(--text)"></div>           <button class="btn btn-ghost btn-sm" style="margin-top:10px" onclick="copyAvImagePrompt()">Copy full prompt</button>         </div>         <div id="av-pane-script" style="display:none">           <div id="av-script-text" style="font-size:.85rem;line-height:1.8;color:var(--text);white-space:pre-wrap"></div>           <button class="btn btn-ghost btn-sm" style="margin-top:10px" onclick="navigator.clipboard.writeText(document.getElementById('av-script-text').textContent)">Copy script</button>         </div>         <div id="av-pane-voice" style="display:none">           <div id="av-voice-fields" style="font-size:.85rem;line-height:1.8;color:var(--text)"></div>         </div>       </div>       <button class="btn btn-gold" style="width:100%;padding:12px" id="av-falai-btn" onclick="generateAvatarImage()">⚡ Generate Avatar Image with fal.ai</button>       <div id="av-image-result" style="margin-top:14px;display:none">         <img id="av-generated-img" style="width:100%;border-radius:10px;border:1px solid var(--border)" src="" alt="Generated avatar"/>         <button class="btn btn-ghost btn-sm" style="width:100%;margin-top:8px" onclick="saveAvatarToLibrary()">Save to Image Library</button>       </div>     </div>   </div> </div>  <div id="dash-section-main">
+        <div class="welcome-banner">
+          <div class="welcome-text">
+            <h2>Good morning, <em id="dash-first-name">Alex</em></h2>
+            <p>You have 3 free videos remaining this month.</p>
+          </div>
+          <div class="usage-bar-wrap">
+            <div class="usage-bar-label"><span>Free Plan</span><span id="usage-text">0 / 3 used</span></div>
+            <div class="usage-bar"><div class="usage-bar-fill" id="usage-fill" style="width:0%"></div></div>
+          </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-row">
+          <div class="stat-card">
+            <div class="stat-card-val" id="stat-total">0</div>
+            <div class="stat-card-label">Videos Created</div>
+            <div class="stat-card-delta">↑ All time</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-val" id="stat-done">0</div>
+            <div class="stat-card-label">Completed</div>
+            <div class="stat-card-delta">↑ Ready to post</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-val">—</div>
+            <div class="stat-card-label">Published</div>
+            <div class="stat-card-delta" style="color:var(--muted)">Connect Instagram</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-val">—</div>
+            <div class="stat-card-label">Avg. Engagement</div>
+            <div class="stat-card-delta" style="color:var(--muted)">Pro feature</div>
+          </div>
+        </div>
+
+        <!-- Upgrade Banner -->
+        <div class="upgrade-banner" id="upgrade-banner">
+          <div class="upgrade-text">
+            <p>Unlock unlimited videos, Instagram posting & analytics</p>
+            <p>LuxClip Pro — from $29/mo. Cancel anytime.</p>
+          </div>
+          <button class="btn btn-gold btn-sm" onclick="go('pricing')">Upgrade to Pro →</button>
+        </div>
+
+        <!-- Smart Calendar -->
+        <div class="create-section" style="margin-bottom:16px" id="calendar-section">
+          <div class="create-header">
+            <div>
+              <div class="create-title">✦ Your 7-Day Content Plan</div>
+              <div style="font-size:.75rem;color:var(--muted);margin-top:2px" id="plan-niche-label"></div>
+            </div>
+            <button class="btn btn-outline btn-sm" onclick="showOnboarding()">↺ New Plan</button>
+          </div>
+          <div id="calendar-empty" style="text-align:center;padding:48px 20px;display:none">
+            <div style="font-size:2rem;margin-bottom:12px">📅</div>
+            <div style="font-size:1rem;font-weight:600;color:var(--text);margin-bottom:8px">No content plan yet</div>
+            <div style="font-size:.8rem;color:var(--muted);margin-bottom:20px">Tell us about your niche and we'll generate a 7-day Instagram strategy</div>
+            <button class="btn btn-gold btn-md" onclick="showOnboarding()">Generate My Content Plan →</button>
+          </div>
+          <div id="calendar-loading" style="text-align:center;padding:48px 20px;display:none">
+            <div class="spin-ring" style="margin:0 auto 16px"></div>
+            <div style="font-size:.85rem;color:var(--gold)">Generating your 7-day content strategy…</div>
+            <div style="font-size:.75rem;color:var(--muted);margin-top:6px">This takes about 15 seconds</div>
+          </div>
+          <div id="calendar-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin-top:16px"></div>
+        </div>
+
+        <!-- Quick Generate (collapsed by default, shown when calendar day clicked) -->
+        <div class="create-section" id="quick-generate-section" style="display:none;margin-bottom:16px">
+          <div class="create-header">
+            <div>
+              <div class="create-title" id="quick-gen-title">✦ Generate Reel</div>
+              <div style="font-size:.75rem;color:var(--muted);margin-top:2px" id="quick-gen-subtitle"></div>
+            </div>
+            <button class="btn btn-ghost btn-sm" onclick="hideQuickGenerate()">✕ Close</button>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap">
+            <div class="upload-area" id="quick-upload-area" onclick="document.getElementById('quick-image-input').click()" style="flex:1;min-width:200px;margin-bottom:0;padding:16px">
+              <input type="file" id="quick-image-input" accept="image/jpeg,image/png,image/webp" style="display:none" onchange="handleImageUpload(this)">
+              <div id="quick-upload-placeholder">
+                <div class="upload-icon" style="font-size:1.2rem">⬆</div>
+                <div class="upload-title" style="font-size:.8rem">Upload Product Photo</div>
+                <div class="upload-sub">Or use AI generator above</div>
+              </div>
+              <div id="quick-upload-preview" style="display:none">
+                <img id="quick-upload-img" style="max-height:80px;max-width:100%;border-radius:6px;object-fit:contain">
+                <button class="btn btn-ghost btn-sm" style="margin-top:4px;font-size:.65rem" onclick="clearImage(event)">Remove ✕</button>
+              </div>
+            </div>
+            <div style="flex:2;min-width:200px;display:flex;flex-direction:column;gap:8px">
+              <div>
+                <div class="prompt-label" style="margin-bottom:4px">Hook <span style="color:var(--muted);font-weight:400">(first line of your post)</span></div>
+                <input id="quick-hook" class="prompt-textarea" style="height:auto;padding:10px 14px;font-size:.85rem" placeholder="Your attention-grabbing hook…">
+              </div>
+              <div>
+                <div class="prompt-label" style="margin-bottom:4px">Topic <span style="color:var(--muted);font-weight:400">(what this post is about)</span></div>
+                <input id="quick-topic" class="prompt-textarea" style="height:auto;padding:10px 14px;font-size:.85rem" placeholder="Topic description…">
+              </div>
+              <div>
+                <div class="prompt-label" style="margin-bottom:4px">Video Prompt <span style="color:var(--muted);font-weight:400">(what to generate)</span></div>
+                <textarea class="prompt-textarea" id="quick-prompt" style="height:70px" placeholder="Describe the video scene…"></textarea>
+              </div>
+              <button class="btn btn-gold btn-md" id="quick-gen-btn" style="width:100%" onclick="handleQuickGenerate()">🎬 Generate Reel</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ad Creator -->
+        <div class="create-section" style="margin-bottom:16px">
+          <div class="create-header">
+            <div>
+              <div class="create-title">✦ Ad Image Creator</div>
+              <div style="font-size:.75rem;color:var(--muted);margin-top:2px">Generate a background image then overlay your text — no errors, fully editable</div>
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+            <div>
+              <div class="prompt-label" style="margin-bottom:6px">Scene</div>
+              <select id="ad-scene" class="prompt-textarea" style="height:auto;padding:10px 14px;font-size:.85rem" onchange="document.getElementById('ad-custom-scene').style.display=this.value==='custom'?'block':'none'">
+                <option value="home office professional">Home office — professional with laptop</option>
+                <option value="luxury lifestyle aspirational">Luxury lifestyle — aspirational setting</option>
+                <option value="fitness gym workout">Fitness — gym or outdoor workout</option>
+                <option value="restaurant food dining">Restaurant — food and dining</option>
+                <option value="fashion model product">Fashion — model with product</option>
+                <option value="minimal clean white background product photography">Minimal product — clean white background</option>
+                <option value="custom">Custom scene…</option>
+              </select>
+            </div>
+            <div>
+              <div class="prompt-label" style="margin-bottom:6px">Style</div>
+              <select id="ad-style" class="prompt-textarea" style="height:auto;padding:10px 14px;font-size:.85rem">
+                <option value="ultra realistic warm lighting professional photography">Warm & Realistic</option>
+                <option value="high contrast dark moody luxury aesthetic">Dark Luxury</option>
+                <option value="bright clean minimalist white background">Clean Minimal</option>
+                <option value="bold vibrant colors energetic dynamic">Bold & Vibrant</option>
+                <option value="cinematic film grain editorial">Cinematic Editorial</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="ad-custom-scene" style="display:none;margin-bottom:12px">
+            <textarea class="prompt-textarea" id="ad-custom-scene-text" style="height:60px" placeholder="Describe your custom background scene…"></textarea>
+          </div>
+
+          <button class="btn btn-outline btn-md" id="ad-bg-btn" style="width:100%;margin-bottom:16px" onclick="generateAdBackground()">✨ Generate Background Image</button>
+
+          <div id="ad-gen-loading" style="display:none;text-align:center;padding:20px">
+            <div class="spin-ring" style="margin:0 auto 10px"></div>
+            <div style="font-size:.8rem;color:var(--gold)">Generating background with DALL-E 3…</div>
+          </div>
+
+          <!-- Live Ad Preview with editable overlay -->
+          <div id="ad-composer" style="display:none">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start">
+
+              <!-- Controls -->
+              <div style="display:flex;flex-direction:column;gap:12px">
+                <div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+                    <div class="prompt-label">Headline</div>
+                    <div style="display:flex;align-items:center;gap:6px">
+                      <span style="font-size:.7rem;color:var(--muted)">Size</span>
+                      <input type="range" id="ad-headline-size" min="10" max="40" value="18" style="width:70px;accent-color:var(--gold)" oninput="updateAdPreview()">
+                    </div>
+                  </div>
+                  <input id="ad-headline" class="prompt-textarea" style="height:auto;padding:10px 14px;font-size:.85rem" placeholder="YOUR HEADLINE HERE" oninput="updateAdPreview()">
+                </div>
+                <div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+                    <div class="prompt-label">Subheadline <span style="font-size:.65rem;color:var(--gold)">(drag on preview)</span></div>
+                    <div style="display:flex;align-items:center;gap:6px">
+                      <span style="font-size:.7rem;color:var(--muted)">Size</span>
+                      <input type="range" id="ad-sub-size" min="8" max="28" value="12" style="width:70px;accent-color:var(--gold)" oninput="updateAdPreview()">
+                    </div>
+                  </div>
+                  <input id="ad-sub" class="prompt-textarea" style="height:auto;padding:10px 14px;font-size:.85rem" placeholder="Supporting text (optional)" oninput="updateAdPreview()">
+                </div>
+                <div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+                    <div class="prompt-label">CTA Button <span style="font-size:.65rem;color:var(--gold)">(drag on preview)</span></div>
+                    <div style="display:flex;align-items:center;gap:6px">
+                      <span style="font-size:.7rem;color:var(--muted)">Size</span>
+                      <input type="range" id="ad-cta-size" min="8" max="28" value="14" style="width:70px;accent-color:var(--gold)" oninput="updateAdPreview()">
+                    </div>
+                  </div>
+                  <input id="ad-cta" class="prompt-textarea" style="height:auto;padding:10px 14px;font-size:.85rem" placeholder="CLICK HERE" oninput="updateAdPreview()">
+                </div>
+                <div>
+                  <div class="prompt-label" style="margin-bottom:6px">CTA Color</div>
+                  <div style="display:flex;gap:6px">
+                    <button class="tone-btn active" data-adcolor="linear-gradient(135deg,#f7971e,#ffd200)" onclick="setAdColor(this)" style="flex:1;justify-content:center;font-size:.7rem">🟡 Gold</button>
+                    <button class="tone-btn" data-adcolor="linear-gradient(135deg,#e6683c,#dc2743)" onclick="setAdColor(this)" style="flex:1;justify-content:center;font-size:.7rem">🔴 Red</button>
+                    <button class="tone-btn" data-adcolor="linear-gradient(135deg,#11998e,#38ef7d)" onclick="setAdColor(this)" style="flex:1;justify-content:center;font-size:.7rem">🟢 Green</button>
+                    <button class="tone-btn" data-adcolor="linear-gradient(135deg,#4776e6,#8e54e9)" onclick="setAdColor(this)" style="flex:1;justify-content:center;font-size:.7rem">🔵 Blue</button>
+                  </div>
+                </div>
+                <div style="display:flex;gap:8px">
+                  <button class="btn btn-gold btn-sm" style="flex:1" onclick="downloadAdComposite()" id="ad-download-btn" disabled>Download Ad ↓</button>
+                  <button class="btn btn-outline btn-sm" onclick="generateAdBackground()">New BG ↺</button>
+                  <button class="btn btn-outline btn-sm" onclick="useAdAsVideoImage()">→ Video</button>
+                </div>
+              </div>
+
+              <!-- Live Preview -->
+              <div>
+                <div class="prompt-label" style="margin-bottom:6px">Live Preview <span style="font-size:.65rem;color:var(--muted)">(drag text to reposition)</span></div>
+                <div id="ad-preview-wrap" style="position:relative;border-radius:10px;overflow:hidden;border:1px solid var(--border2);aspect-ratio:1/1;cursor:default">
+                  <img id="ad-bg-img" style="width:100%;height:100%;object-fit:cover;display:block">
+                  <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.35) 0%,rgba(0,0,0,.05) 40%,rgba(0,0,0,.45) 100%)"></div>
+                  <div id="ad-preview-headline" draggable="false" style="position:absolute;top:10%;left:0;right:0;text-align:center;padding:0 12px;font-size:1.1rem;font-weight:900;color:white;text-shadow:2px 2px 8px rgba(0,0,0,.9);text-transform:uppercase;line-height:1.2;letter-spacing:.02em;cursor:grab;user-select:none"></div>
+                  <div id="ad-preview-sub" style="position:absolute;top:40%;left:0;right:0;text-align:center;padding:0 12px;font-size:.75rem;color:rgba(255,255,255,.95);text-shadow:1px 1px 4px rgba(0,0,0,.9);line-height:1.4;cursor:grab;user-select:none"></div>
+                  <div id="ad-preview-cta" style="position:absolute;bottom:8%;left:8%;right:8%;text-align:center;padding:12px 16px;border-radius:50px;font-weight:900;font-size:.9rem;color:white;text-transform:uppercase;letter-spacing:.06em;box-shadow:0 4px 20px rgba(0,0,0,.5);background:linear-gradient(135deg,#f7971e,#ffd200);text-shadow:1px 1px 3px rgba(0,0,0,.4);cursor:grab;user-select:none"></div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div id="ad-gen-error" style="display:none;color:var(--red);font-size:.8rem;margin-top:8px"></div>
+
+          <!-- Ad Image Library -->
+          <div id="ad-library-section" style="display:none;margin-top:20px;border-top:1px solid var(--border);padding-top:16px">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+              <div class="prompt-label">Saved Ad Images</div>
+              <button class="btn btn-ghost btn-sm" onclick="clearAdLibrary()">Clear All</button>
+            </div>
+            <div id="ad-library-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px"></div>
+          </div>
+        </div>
+
+        <!-- Library -->
+        <div class="lib-stats-row">
+          <div class="lib-stat">
+            <div class="lib-stat-label">Total</div>
+            <div class="lib-stat-val gold" id="stat-total">0</div>
+          </div>
+          <div class="lib-stat">
+            <div class="lib-stat-label">Done</div>
+            <div class="lib-stat-val green" id="stat-done">0</div>
+          </div>
+          <div class="lib-stat">
+            <div class="lib-stat-label">Pending</div>
+            <div class="lib-stat-val" id="stat-pending">0</div>
+          </div>
+          <div class="lib-stat">
+            <div class="lib-stat-label">Failed</div>
+            <div class="lib-stat-val red" id="stat-failed-count">0</div>
+          </div>
+        </div>
+        <div class="library-header">
+          <div class="library-title">Content Library</div>
+          <div class="library-filters">
+            <button class="filter-pill active" onclick="filterVideos('all',this)">All <span class="filter-count" id="fc-all">0</span></button>
+            <button class="filter-pill" onclick="filterVideos('done',this)">Done <span class="filter-count" id="fc-done">0</span></button>
+            <button class="filter-pill" onclick="filterVideos('pending',this)">Pending <span class="filter-count" id="fc-pending">0</span></button>
+          </div>
+        </div>
+        <div class="video-grid" id="video-grid"></div>
+        </div><!-- end dash-section-main -->
+
+        <!-- IMAGE LIBRARY SECTION -->
+        <div id="dash-section-image-library" style="display:none">
+          <div style="margin-bottom:20px">
+            <div style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;margin-bottom:4px">🖼 Image Library</div>
+            <div style="font-size:.85rem;color:var(--muted)">All your AI-generated ad backgrounds — click any to reload into the Ad Creator</div>
+          </div>
+          <div id="ad-library-grid-page" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px"></div>
+          <div id="ad-library-empty" style="display:none;text-align:center;padding:60px 20px;color:var(--muted)">
+            <div style="font-size:2.5rem;margin-bottom:12px">🖼</div>
+            <div style="font-weight:600;margin-bottom:6px">No images yet</div>
+            <div style="font-size:.85rem">Generate your first ad image in the Ad Creator</div>
+          </div>
+        </div>
+
+        <!-- THUMBNAIL AI SECTION -->
+        <div id="dash-section-thumbnail-gen" style="display:none">
+          <div style="display:flex;align-items:start;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px">
+            <div>
+              <div style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;margin-bottom:4px">🎯 AI Thumbnail Intelligence</div>
+              <div style="font-size:.85rem;color:var(--muted)">Studies what's viral in your niche and generates thumbnails in proven styles</div>
+            </div>
+            <!-- Usage counter -->
+            <div style="background:var(--noir3);border:1px solid var(--border);border-radius:8px;padding:10px 16px;text-align:center;min-width:120px">
+              <div style="font-size:1.4rem;font-weight:700;color:var(--gold)" id="thumb-usage-count">0</div>
+              <div style="font-size:.7rem;color:var(--muted)" id="thumb-usage-label">/ 3 this month</div>
+              <div style="font-size:.65rem;color:var(--muted);margin-top:2px">Free Plan</div>
+            </div>
+          </div>
+
+          <!-- Profile locked banner -->
+          <div id="thumb-profile-banner" style="display:none;background:rgba(212,168,83,.06);border:1px solid var(--gold3);border-radius:8px;padding:12px 16px;margin-bottom:16px;display:flex;align-items:center;gap:12px">
+            <div style="font-size:1.2rem">✦</div>
+            <div>
+              <div style="font-size:.8rem;font-weight:600;color:var(--gold)">Using your content profile</div>
+              <div style="font-size:.75rem;color:var(--muted)" id="thumb-profile-info"></div>
+            </div>
+            <button class="btn btn-ghost btn-sm" style="margin-left:auto;font-size:.7rem" onclick="document.getElementById('thumb-profile-banner').style.display='none';document.getElementById('thumb-niche-row').style.display='grid'">Edit</button>
+          </div>
+
+          <!-- Step 1 — Niche + Style Analysis -->
+          <div class="create-section" style="margin-bottom:16px">
+            <div class="create-header">
+              <div>
+                <div class="create-title">Step 1 — Analyse Your Niche</div>
+                <div style="font-size:.75rem;color:var(--muted);margin-top:2px">We identify the visual patterns that get the most clicks in your niche</div>
+              </div>
+            </div>
+
+            <div id="thumb-niche-row" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px">
+              <div>
+                <div class="prompt-label" style="margin-bottom:6px">Your Niche</div>
+                <input id="thumb-niche" class="prompt-textarea" style="height:auto;padding:10px 14px;font-size:.85rem" placeholder="e.g. fitness coaching, luxury fashion, real estate…">
+              </div>
+              <div>
+                <div class="prompt-label" style="margin-bottom:6px">Platform</div>
+                <select id="thumb-platform" class="prompt-textarea" style="height:auto;padding:10px 14px;font-size:.85rem">
+                  <option value="Instagram Reels">Instagram Reels</option>
+                  <option value="YouTube">YouTube</option>
+                  <option value="TikTok">TikTok</option>
+                  <option value="Facebook">Facebook</option>
+                </select>
+              </div>
+            </div>
+
+            <button class="btn btn-outline btn-md" id="thumb-analyse-btn" style="width:100%" onclick="analyseThumbnailStyles()">🔍 Analyse Trending Styles</button>
+
+            <div id="thumb-analyse-loading" style="display:none;text-align:center;padding:24px">
+              <div class="spin-ring" style="margin:0 auto 10px"></div>
+              <div style="font-size:.8rem;color:var(--gold)">Studying viral thumbnails in your niche…</div>
+            </div>
+
+            <!-- Style Cards -->
+            <div id="thumb-styles" style="display:none;margin-top:16px">
+              <div class="prompt-label" style="margin-bottom:10px">Choose a proven style to generate:</div>
+              <div id="thumb-style-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px"></div>
+            </div>
+          </div>
+
+          <!-- Step 2 — Customise & Generate -->
+          <div class="create-section" id="thumb-gen-section" style="display:none;margin-bottom:16px">
+            <div class="create-header">
+              <div>
+                <div class="create-title">Step 2 — Customise & Generate</div>
+                <div style="font-size:.75rem;color:var(--muted);margin-top:2px" id="thumb-selected-style-label">Selected style</div>
+              </div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px">
+              <div>
+                <div class="prompt-label" style="margin-bottom:6px">Main Text / Title</div>
+                <input id="thumb-title" class="prompt-textarea" style="height:auto;padding:10px 14px;font-size:.85rem" placeholder="e.g. 5 Ways to Lose Weight Fast">
+              </div>
+              <div>
+                <div class="prompt-label" style="margin-bottom:6px">Subject / Person</div>
+                <input id="thumb-subject" class="prompt-textarea" style="height:auto;padding:10px 14px;font-size:.85rem" placeholder="e.g. fitness coach, luxury product, before/after">
+              </div>
+            </div>
+
+            <div style="margin-bottom:14px">
+              <div class="prompt-label" style="margin-bottom:6px">Mood / Emotion</div>
+              <div style="display:flex;gap:8px;flex-wrap:wrap">
+                <button class="tone-btn active" data-thumb-mood="excited and energetic" onclick="selectThumbMood(this)">🔥 Excited</button>
+                <button class="tone-btn" data-thumb-mood="shocked and surprised" onclick="selectThumbMood(this)">😱 Shocked</button>
+                <button class="tone-btn" data-thumb-mood="confident and powerful" onclick="selectThumbMood(this)">💪 Confident</button>
+                <button class="tone-btn" data-thumb-mood="luxury and aspirational" onclick="selectThumbMood(this)">💎 Luxury</button>
+                <button class="tone-btn" data-thumb-mood="curious and mysterious" onclick="selectThumbMood(this)">🤔 Curious</button>
+              </div>
+            </div>
+
+            <button class="btn btn-gold btn-md" id="thumb-gen-btn" style="width:100%" onclick="generateThumbnail()">✨ Generate Thumbnail</button>
+
+            <div id="thumb-gen-loading" style="display:none;text-align:center;padding:24px">
+              <div class="spin-ring" style="margin:0 auto 10px"></div>
+              <div style="font-size:.8rem;color:var(--gold)">Generating your viral thumbnail…</div>
+            </div>
+
+            <!-- Result -->
+            <div id="thumb-result" style="display:none;margin-top:16px">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start">
+                <div>
+                  <div class="prompt-label" style="margin-bottom:8px">Generated Thumbnail</div>
+                  <img id="thumb-result-img" style="width:100%;border-radius:10px;border:1px solid var(--border2)">
+                  <div style="display:flex;gap:8px;margin-top:10px">
+                    <button class="btn btn-gold btn-sm" style="flex:1" onclick="downloadThumbnail()">Download ↓</button>
+                    <button class="btn btn-outline btn-sm" onclick="generateThumbnail()">Regenerate ↺</button>
+                    <button class="btn btn-outline btn-sm" onclick="saveThumbnailToLibrary()">Save 🔖</button>
+                  </div>
+                </div>
+                <div>
+                  <div class="prompt-label" style="margin-bottom:8px">Why This Works</div>
+                  <div id="thumb-why-works" style="font-size:.82rem;color:var(--muted);line-height:1.6;background:var(--noir3);border:1px solid var(--border);border-radius:8px;padding:14px"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Thumbnail Library -->
+          <div id="thumb-library-section" style="display:none">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+              <div class="prompt-label">Saved Thumbnails</div>
+              <button class="btn btn-ghost btn-sm" onclick="clearThumbLibrary()">Clear All</button>
+            </div>
+            <div id="thumb-library-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px"></div>
+          </div>
+        </div>
+        <!-- TEMPLATES SECTION -->
+        <div id="dash-section-templates" style="display:none">
+          <div style="margin-bottom:24px">
+            <div style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;margin-bottom:4px">✦ Template Library</div>
+            <div style="font-size:.85rem;color:var(--muted)">Proven templates for videos, captions, content plans and ads — click any to use instantly</div>
+          </div>
+          <div style="display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap">
+            <button class="filter-pill active" onclick="filterTemplates('all',this)">All</button>
+            <button class="filter-pill" onclick="filterTemplates('video',this)">🎬 Video Prompts</button>
+            <button class="filter-pill" onclick="filterTemplates('plan',this)">📅 Content Plans</button>
+            <button class="filter-pill" onclick="filterTemplates('caption',this)">✍️ Captions</button>
+            <button class="filter-pill" onclick="filterTemplates('ad',this)">📸 Ad Templates</button>
+          </div>
+          <div id="template-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px"></div>
+        </div>
+
+        <div id="dash-section-video-library" style="display:none">
+          <div style="margin-bottom:20px">
+            <div style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;margin-bottom:4px">▦ Video Library</div>
+            <div style="font-size:.85rem;color:var(--muted)">All your generated reels</div>
+          </div>
+          <div class="video-grid" id="video-grid-page"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     ONBOARDING MODAL
+══════════════════════════════ -->
+<!-- ══════════════════════════════
+     ONBOARDING MODAL — 3 SCREENS
+══════════════════════════════ -->
+<div id="onboarding-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:1000;align-items:center;justify-content:center;padding:20px">
+  <div style="background:var(--panel);border:1px solid var(--border2);border-radius:16px;width:100%;max-width:560px;padding:40px;position:relative">
+
+    <!-- Progress bar -->
+    <div style="display:flex;gap:6px;margin-bottom:32px">
+      <div id="ob-prog-1" style="height:3px;flex:1;border-radius:2px;background:var(--gold);transition:all .3s"></div>
+      <div id="ob-prog-2" style="height:3px;flex:1;border-radius:2px;background:var(--border2);transition:all .3s"></div>
+      <div id="ob-prog-3" style="height:3px;flex:1;border-radius:2px;background:var(--border2);transition:all .3s"></div>
+    </div>
+
+    <!-- SCREEN 1 — What do you want to grow? -->
+    <div id="ob-screen-1">
+      <div style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;margin-bottom:8px">What do you want to grow?</div>
+      <div style="font-size:.85rem;color:var(--muted);margin-bottom:32px">Choose your mode and we'll tailor your content strategy.</div>
+
+      <div style="display:grid;gap:12px">
+        <button class="ob-mode-btn" onclick="selectMode('personal')" id="mode-personal">
+          <div class="ob-mode-icon">📈</div>
+          <div>
+            <div class="ob-mode-title">Personal Brand</div>
+            <div class="ob-mode-desc">Coaches, creators, consultants & thought leaders</div>
+          </div>
+          <div class="ob-mode-arrow">→</div>
+        </button>
+        <button class="ob-mode-btn" onclick="selectMode('local')" id="mode-local">
+          <div class="ob-mode-icon">📍</div>
+          <div>
+            <div class="ob-mode-title">Local Business</div>
+            <div class="ob-mode-desc">Restaurants, salons, gyms & service businesses</div>
+          </div>
+          <div class="ob-mode-arrow">→</div>
+        </button>
+        <button class="ob-mode-btn" onclick="selectMode('product')" id="mode-product">
+          <div class="ob-mode-icon">🛒</div>
+          <div>
+            <div class="ob-mode-title">Sell a Product</div>
+            <div class="ob-mode-desc">E-commerce, dropshipping & product brands</div>
+          </div>
+          <div class="ob-mode-arrow">→</div>
+        </button>
+      </div>
+    </div>
+
+    <!-- SCREEN 2 — Tell us about your brand -->
+    <div id="ob-screen-2" style="display:none">
+      <div style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;margin-bottom:8px" id="ob-screen2-title">Tell us about your brand</div>
+      <div style="font-size:.85rem;color:var(--muted);margin-bottom:28px">We use this to craft your content angles, hook styles and CTAs.</div>
+
+      <div style="margin-bottom:18px">
+        <div class="prompt-label" style="margin-bottom:8px" id="ob-niche-label">Your niche</div>
+        <input id="ob-niche" class="prompt-textarea" style="height:auto;padding:12px 16px;font-size:.9rem" placeholder="e.g. fitness coaching, mindset, business strategy…">
+      </div>
+
+      <div style="margin-bottom:18px">
+        <div class="prompt-label" style="margin-bottom:8px">Target audience</div>
+        <input id="ob-audience" class="prompt-textarea" style="height:auto;padding:12px 16px;font-size:.9rem" placeholder="e.g. beginners, CEOs, busy moms, entrepreneurs…">
+      </div>
+
+      <div style="margin-bottom:18px">
+        <div class="prompt-label" style="margin-bottom:8px">Your goal</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px" id="ob-goals">
+          <button class="tone-btn" data-goal="followers" onclick="selectGoal(this)">📈 Grow followers</button>
+          <button class="tone-btn" data-goal="clients" onclick="selectGoal(this)">🤝 Get clients</button>
+          <button class="tone-btn" data-goal="authority" onclick="selectGoal(this)">👑 Build authority</button>
+        </div>
+      </div>
+
+      <div style="margin-bottom:28px">
+        <div class="prompt-label" style="margin-bottom:8px">Content tone</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+          <button class="tone-btn" data-tone="educational" onclick="selectObTone(this)">🎓 Educational</button>
+          <button class="tone-btn" data-tone="motivational" onclick="selectObTone(this)">🔥 Motivational</button>
+          <button class="tone-btn" data-tone="bold" onclick="selectObTone(this)">⚡ Bold</button>
+          <button class="tone-btn" data-tone="luxury" onclick="selectObTone(this)">💎 Luxury</button>
+          <button class="tone-btn" data-tone="playful" onclick="selectObTone(this)">🎉 Playful</button>
+          <button class="tone-btn" data-tone="minimal" onclick="selectObTone(this)">◻ Minimal</button>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:10px">
+        <button class="btn btn-outline btn-md" onclick="goObScreen(1)">← Back</button>
+        <button class="btn btn-gold btn-md" style="flex:1" onclick="goObScreen(3)">Next → Review Profile</button>
+      </div>
+      <div id="ob-error" style="color:var(--red);font-size:.8rem;margin-top:12px;text-align:center;display:none"></div>
+    </div>
+
+    <!-- SCREEN 3 — Your Content Profile -->
+    <div id="ob-screen-3" style="display:none">
+      <div style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;margin-bottom:8px">Your Content Profile ✦</div>
+      <div style="font-size:.85rem;color:var(--muted);margin-bottom:24px">Here's what we've built for you. We'll use this to generate your 7-day plan.</div>
+
+      <div style="background:var(--noir3);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:24px">
+        <div style="display:grid;gap:12px">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em">Mode</span>
+            <span style="font-size:.85rem;font-weight:600;color:var(--text)" id="profile-mode"></span>
+          </div>
+          <div style="height:1px;background:var(--border)"></div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em">Niche</span>
+            <span style="font-size:.85rem;font-weight:600;color:var(--text)" id="profile-niche"></span>
+          </div>
+          <div style="height:1px;background:var(--border)"></div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em">Audience</span>
+            <span style="font-size:.85rem;font-weight:600;color:var(--text)" id="profile-audience"></span>
+          </div>
+          <div style="height:1px;background:var(--border)"></div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em">Goal</span>
+            <span style="font-size:.85rem;font-weight:600;color:var(--gold)" id="profile-goal"></span>
+          </div>
+          <div style="height:1px;background:var(--border)"></div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em">Tone</span>
+            <span style="font-size:.85rem;font-weight:600;color:var(--gold)" id="profile-tone"></span>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:rgba(212,168,83,.06);border:1px solid var(--gold3);border-radius:8px;padding:14px;margin-bottom:24px">
+        <div style="font-size:.75rem;color:var(--gold);font-weight:600;margin-bottom:6px">✦ What we'll create for you</div>
+        <div style="font-size:.8rem;color:var(--muted);line-height:1.6" id="profile-summary"></div>
+      </div>
+
+      <div style="display:flex;gap:10px">
+        <button class="btn btn-outline btn-md" onclick="goObScreen(2)">← Edit</button>
+        <button class="btn btn-gold btn-lg" style="flex:1" onclick="generateContentPlan()">Generate My 7-Day Plan →</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     INSTAGRAM PREVIEW MODAL
+══════════════════════════════ -->
+<div id="preview-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:1000;align-items:center;justify-content:center;padding:20px" onclick="closePreview()">
+  <div style="background:#000;border-radius:12px;width:100%;max-width:380px;overflow:hidden" onclick="event.stopPropagation()">
+
+    <!-- Instagram header -->
+    <div style="background:#000;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #222">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;color:white" id="preview-avatar">LX</div>
+        <div>
+          <div style="font-size:.82rem;font-weight:600;color:white" id="preview-username">yourbrand</div>
+          <div style="font-size:.68rem;color:#888">Sponsored</div>
+        </div>
+      </div>
+      <div style="color:#888;font-size:1.2rem">···</div>
+    </div>
+
+    <!-- Video -->
+    <div style="position:relative;background:#111;aspect-ratio:9/16;max-height:480px;overflow:hidden">
+      <video id="preview-video" muted loop playsinline autoplay style="width:100%;height:100%;object-fit:cover"></video>
+      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center" id="preview-placeholder">
+        <div style="color:#444;font-size:2rem">▶</div>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div style="background:#000;padding:10px 16px">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+        <div style="display:flex;gap:16px">
+          <span style="font-size:1.4rem;cursor:pointer" id="preview-heart">🤍</span>
+          <span style="font-size:1.4rem;cursor:pointer">💬</span>
+          <span style="font-size:1.4rem;cursor:pointer">✈️</span>
+        </div>
+        <span style="font-size:1.4rem;cursor:pointer">🔖</span>
+      </div>
+      <div style="font-size:.8rem;font-weight:600;color:white;margin-bottom:4px" id="preview-likes">❤️ 1,247 likes</div>
+      <div style="font-size:.8rem;color:white;line-height:1.4">
+        <span style="font-weight:600" id="preview-caption-user">yourbrand</span>
+        <span id="preview-caption-text" style="color:#e0e0e0"> </span>
+      </div>
+      <div style="font-size:.72rem;color:#888;margin-top:6px">View all 48 comments</div>
+      <div style="font-size:.68rem;color:#555;margin-top:4px;text-transform:uppercase;letter-spacing:.05em">2 hours ago</div>
+    </div>
+
+    <!-- Close -->
+    <div style="background:#000;padding:12px;text-align:center;border-top:1px solid #222">
+      <div style="display:flex;gap:8px;justify-content:center">
+        <button class="btn btn-outline btn-sm" onclick="closePreview()">Close</button>
+        <button class="btn btn-gold btn-sm" onclick="copyCaptionFromPreview()">Copy Caption ⧉</button>
+        <button class="btn btn-sm" style="background:#E1306C;color:white;border:none" onclick="toast('Instagram posting coming soon ✦','info')">Post to Instagram</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="page" id="page-pricing">
+  <div style="background:var(--noir2);border-bottom:1px solid var(--border);padding:16px 40px;display:flex;align-items:center;justify-content:space-between;">
+    <div class="wordmark" style="font-size:1.3rem;cursor:pointer" onclick="go('landing')">Lux<span style="color:var(--text);font-style:italic">Reel</span></div>
+    <div style="display:flex;gap:10px">
+      <button class="btn btn-ghost btn-sm" onclick="go('dashboard')">← Dashboard</button>
+      <button class="btn btn-gold btn-sm" onclick="go('auth')">Get Started</button>
+    </div>
+  </div>
+  <div class="pricing-wrapper">
+    <div class="pricing-hero">
+      <div class="section-tag">Pricing</div>
+      <h2 class="section-title">Simple, <em>honest</em> pricing</h2>
+      <p>No hidden fees. Cancel anytime. Start free.</p>
+      <div style="display:flex;align-items:center;justify-content:center;margin-top:24px;gap:8px;">
+        <div class="pricing-toggle">
+          <button class="ptoggle-btn active" id="ptog-monthly" onclick="setPricingPeriod('monthly')">Monthly</button>
+          <button class="ptoggle-btn" id="ptog-yearly" onclick="setPricingPeriod('yearly')">Yearly</button>
+        </div>
+        <span class="save-badge">Save 30%</span>
+      </div>
+    </div>
+
+    <div class="plans-grid">
+      <!-- Free -->
+      <div class="plan-card">
+        <div class="plan-tag tag-free">Free</div>
+        <div class="plan-price">
+          <div class="plan-amount"><span>$</span>0</div>
+          <div class="plan-period">Forever free</div>
+        </div>
+        <div class="plan-desc">Perfect for trying LuxClip AI and creating your first reels.</div>
+        <ul class="plan-features">
+          <li>3 videos per month</li>
+          <li>AI caption generation</li>
+          <li>5 caption tones</li>
+          <li>Content library</li>
+          <li class="disabled">Instagram posting</li>
+          <li class="disabled">Unlimited videos</li>
+          <li class="disabled">Analytics dashboard</li>
+          <li class="disabled">Brand templates</li>
+        </ul>
+        <button class="btn btn-outline btn-md plan-cta" onclick="go('auth')">Get Started Free</button>
+      </div>
+
+      <!-- Pro -->
+      <div class="plan-card featured">
+        <div class="popular-badge">Most Popular</div>
+        <div class="plan-tag tag-pro">✦ Pro</div>
+        <div class="plan-price">
+          <div class="plan-amount" id="pro-price"><span>$</span>29</div>
+          <div class="plan-period" id="pro-period">per month</div>
+        </div>
+        <div class="plan-desc">For serious creators and brands ready to scale their content.</div>
+        <ul class="plan-features">
+          <li>Unlimited videos</li>
+          <li>AI caption generation</li>
+          <li>All caption tones</li>
+          <li>Content library</li>
+          <li>Instagram posting (Buffer)</li>
+          <li>Analytics dashboard</li>
+          <li>Brand templates (10)</li>
+          <li>Priority generation queue</li>
+        </ul>
+        <button class="btn btn-gold btn-md plan-cta" onclick="showUpgradeModal()">Upgrade to Pro →</button>
+      </div>
+
+      <!-- Agency -->
+      <div class="plan-card">
+        <div class="plan-tag tag-agency">Agency</div>
+        <div class="plan-price">
+          <div class="plan-amount" id="agency-price"><span>$</span>99</div>
+          <div class="plan-period" id="agency-period">per month</div>
+        </div>
+        <div class="plan-desc">For agencies managing multiple brands and clients at scale.</div>
+        <ul class="plan-features">
+          <li>Everything in Pro</li>
+          <li>10 team seats</li>
+          <li>Unlimited templates</li>
+          <li>Client workspaces</li>
+          <li>White-label exports</li>
+          <li>API access</li>
+          <li>Dedicated support</li>
+          <li>Custom onboarding</li>
+        </ul>
+        <button class="btn btn-outline btn-md plan-cta" onclick="showUpgradeModal()">Contact Sales</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     SETTINGS PAGE
+══════════════════════════════ -->
+<div class="page" id="page-settings">
+  <div class="app-shell">
+    <aside class="app-sidebar">
+      <div class="sidebar-logo" onclick="go('landing')">Lux<span>Clip</span></div>
+      <nav class="sidebar-nav">
+        <div class="nav-section-label">Studio</div>
+        <div class="nav-item" onclick="go('dashboard')"><span class="nav-item-icon">◈</span> Dashboard</div>
+        <div class="nav-section-label">Account</div>
+        <div class="nav-item" onclick="go('pricing')"><span class="nav-item-icon">⬆</span> Upgrade</div>
+        <div class="nav-item active"><span class="nav-item-icon">⚙</span> Settings</div>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="user-card">
+          <div class="user-avatar" id="settings-avatar">A</div>
+          <div class="user-info">
+            <div class="user-name" id="settings-name">Alex Smith</div>
+            <div class="user-plan">Free Plan</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <div style="display:flex;flex-direction:column;">
+      <div class="app-topbar">
+        <div class="topbar-title">Settings</div>
+        <div class="topbar-right">
+          <button class="btn btn-ghost btn-sm" onclick="go('dashboard')">← Back</button>
+        </div>
+      </div>
+      <div class="settings-layout">
+        <div class="settings-nav">
+          <div class="settings-nav-item active" onclick="switchSettings('profile',this)">Profile</div>
+          <div class="settings-nav-item" onclick="switchSettings('api',this)">Connected Apps</div>
+          <div class="settings-nav-item" onclick="switchSettings('notifications',this)">Notifications</div>
+          <div class="settings-nav-item" onclick="switchSettings('billing',this)">Billing</div>
+          <div class="settings-nav-item" onclick="switchSettings('danger',this)">Account</div>
+        </div>
+        <div class="settings-content">
+
+          <div class="settings-section active" id="settings-profile">
+            <div class="settings-h">Profile</div>
+            <div class="settings-sub">Manage your account details.</div>
+            <div class="settings-card">
+              <div class="settings-card-title">Personal Information</div>
+              <div class="form-row" style="margin-bottom:14px">
+                <div class="form-group"><label class="form-label">First Name</label><input class="form-input" id="s-first" placeholder="Your first name"/></div>
+                <div class="form-group"><label class="form-label">Last Name</label><input class="form-input" id="s-last" placeholder="Your last name"/></div>
+              </div>
+              <div class="form-group" style="margin-bottom:14px"><label class="form-label">Email</label><input class="form-input" id="s-email" readonly style="opacity:.6;cursor:not-allowed"/></div>
+              <div class="form-group"><label class="form-label">Brand / Company (optional)</label><input class="form-input" id="s-brand" placeholder="Your brand name"/></div>
+            </div>
+            <div class="settings-card" style="margin-top:14px">
+              <div class="settings-card-title">Change Password</div>
+              <div class="form-group" style="margin-bottom:10px"><label class="form-label">New Password</label><input type="password" class="form-input" id="s-new-password" placeholder="••••••••"/></div>
+              <button class="btn btn-outline btn-sm" onclick="changePassword()">Update Password</button>
+            </div>
+            <button class="btn btn-gold btn-sm" style="margin-top:8px" onclick="saveProfile()">Save Changes</button>
+          </div>
+
+          <div class="settings-section" id="settings-api">
+            <div class="settings-h">Connected Apps</div>
+            <div class="settings-sub">Services powering your LuxClip account.</div>
+            <div class="settings-card">
+              <div class="settings-row">
+                <div><div class="settings-row-label">AI Video Generation</div><div class="settings-row-desc">Cinematic video creation engine</div></div>
+                <span style="font-size:.75rem;padding:4px 10px;border-radius:4px;background:rgba(76,175,125,.12);border:1px solid rgba(76,175,125,.3);color:var(--green)">✓ Active</span>
+              </div>
+              <div class="settings-row">
+                <div><div class="settings-row-label">AI Content Strategy</div><div class="settings-row-desc">7-day content plan & caption generation</div></div>
+                <span style="font-size:.75rem;padding:4px 10px;border-radius:4px;background:rgba(76,175,125,.12);border:1px solid rgba(76,175,125,.3);color:var(--green)">✓ Active</span>
+              </div>
+              <div class="settings-row">
+                <div><div class="settings-row-label">AI Image Generation</div><div class="settings-row-desc">Ad backgrounds & thumbnail creation</div></div>
+                <span style="font-size:.75rem;padding:4px 10px;border-radius:4px;background:rgba(76,175,125,.12);border:1px solid rgba(76,175,125,.3);color:var(--green)">✓ Active</span>
+              </div>
+              <div class="settings-row">
+                <div><div class="settings-row-label">Instagram Posting</div><div class="settings-row-desc">Direct publish to your Instagram account</div></div>
+                <span style="font-size:.75rem;padding:4px 10px;border-radius:4px;background:rgba(212,168,83,.08);border:1px solid var(--gold3);color:var(--gold)">Pro feature</span>
+              </div>
+              <div class="settings-row">
+                <div><div class="settings-row-label">Analytics</div><div class="settings-row-desc">Track views, engagement and top content</div></div>
+                <span style="font-size:.75rem;padding:4px 10px;border-radius:4px;background:rgba(212,168,83,.08);border:1px solid var(--gold3);color:var(--gold)">Pro feature</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="settings-section" id="settings-notifications">
+            <div class="settings-h">Notifications</div>
+            <div class="settings-sub">Control what emails and alerts you receive.</div>
+            <div class="settings-card">
+              <div class="settings-row">
+                <div><div class="settings-row-label">Video completed</div><div class="settings-row-desc">Get notified when your video finishes generating</div></div>
+                <button class="toggle-switch on" onclick="toggleSwitch(this)"><div class="toggle-knob"></div></button>
+              </div>
+              <div class="settings-row">
+                <div><div class="settings-row-label">Usage warnings</div><div class="settings-row-desc">Alert when approaching plan limits</div></div>
+                <button class="toggle-switch on" onclick="toggleSwitch(this)"><div class="toggle-knob"></div></button>
+              </div>
+              <div class="settings-row">
+                <div><div class="settings-row-label">Product updates</div><div class="settings-row-desc">New features and announcements</div></div>
+                <button class="toggle-switch" onclick="toggleSwitch(this)"><div class="toggle-knob"></div></button>
+              </div>
+              <div class="settings-row">
+                <div><div class="settings-row-label">Marketing emails</div><div class="settings-row-desc">Tips, tutorials and creator spotlights</div></div>
+                <button class="toggle-switch" onclick="toggleSwitch(this)"><div class="toggle-knob"></div></button>
+              </div>
+            </div>
+          </div>
+
+          <div class="settings-section" id="settings-billing">
+            <div class="settings-h">Billing</div>
+            <div class="settings-sub">Manage your subscription and plan.</div>
+            <div class="settings-card">
+              <div class="settings-row">
+                <div><div class="settings-row-label">Current Plan</div><div class="settings-row-desc" id="s-plan-desc">Free — 3 videos/month</div></div>
+                <button class="btn btn-gold btn-sm" onclick="go('pricing')">Upgrade →</button>
+              </div>
+              <div class="settings-row">
+                <div><div class="settings-row-label">Payment Method</div><div class="settings-row-desc">No payment method on file</div></div>
+                <button class="btn btn-outline btn-sm" onclick="go('pricing')">Add Card</button>
+              </div>
+              <div class="settings-row">
+                <div><div class="settings-row-label">Need help?</div><div class="settings-row-desc">Contact support for billing questions</div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="settings-section" id="settings-danger">
+            <div class="settings-h">Account</div>
+            <div class="settings-sub">Manage your account data.</div>
+            <div class="settings-card">
+              <div class="settings-row">
+                <div><div class="settings-row-label">Content Profile</div><div class="settings-row-desc">Reset your niche, tone and content strategy</div></div>
+                <button class="btn btn-outline btn-sm" onclick="resetContentProfile()">Reset Profile</button>
+              </div>
+              <div class="settings-row">
+                <div><div class="settings-row-label">Clear Video Library</div><div class="settings-row-desc">Permanently delete all your generated videos</div></div>
+                <button class="btn btn-danger btn-sm" onclick="clearLibrary()">Clear Library</button>
+              </div>
+            </div>
+            <div class="settings-card" style="border-color:rgba(224,85,85,.2);margin-top:14px">
+              <div class="settings-row">
+                <div><div class="settings-row-label" style="color:var(--red)">Delete Account</div><div class="settings-row-desc">Permanently delete your account and all data. This cannot be undone.</div></div>
+                <button class="btn btn-danger btn-sm" onclick="requestAccountDeletion()">Delete Account</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Toast container -->
+<div class="toast-container" id="toast-container"></div>
+
+<!-- Upgrade Modal -->
+<!-- Upgrade + Auth Modal -->
+<div class="modal-backdrop" id="upgrade-modal" style="display:none" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+
+    <div class="modal-title">Upgrade to LuxClip Pro ✦</div>
+
+    <div class="modal-sub">
+      Unlock unlimited video generation, Instagram posting, analytics, and brand templates.
+    </div>
+
+    <div style="background:var(--panel);border-radius:8px;padding:16px;margin-bottom:12px;">
+      <div style="font-size:.78rem;color:var(--muted);margin-bottom:10px">
+        You'll get:
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="font-size:.85rem">✦ Unlimited video generations</div>
+        <div style="font-size:.85rem">✦ Direct Instagram posting</div>
+        <div style="font-size:.85rem">✦ Analytics & performance tracking</div>
+        <div style="font-size:.85rem">✦ Brand templates & saved tones</div>
+      </div>
+    </div>
+
+    <!-- AUTH FORM -->
+    <form id="auth-form" style="display:flex;flex-direction:column;gap:10px;margin-bottom:12px;">
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="password" id="password" placeholder="Password" required />
+
+      <button type="submit" class="btn btn-gold btn-md">
+        Continue
+      </button>
+
+      <div id="auth-error" class="auth-error"></div>
+    </form>
+
+    <div class="modal-actions">
+      <button class="btn btn-ghost btn-sm" onclick="closeModal()">
+        Maybe later
+      </button>
+
+      <button class="btn btn-gold btn-md"
+        onclick="closeModal();toast('Redirecting to checkout…','info')">
+        Upgrade for $29/mo →
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════
+// SUPABASE INIT
+// ══════════════════════════════
+const SB_URL='https://tvshyswdwgwunzzrsqca.supabase.co';
+const SB_ANON='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR2c2h5c3dkd2d3dW56enJzcWNhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQwMzM3MDcsImV4cCI6MjA4OTYwOTcwN30.TaLB-ws45-iYYTkHT-iEbhCUZBiSU2C7gO3210Q27qs';
+
+let sb=null;
+
+function initSupabase(){
+  if(window.supabase){
+    sb=window.supabase.createClient(SB_URL,SB_ANON);
+    return true;
+  }
+  return false;
+}
+
+// ══════════════════════════════
+// APP BOOT — check session
+// ══════════════════════════════
+async function bootApp(){
+  initSupabase();
+
+  if(!sb){
+    hideLo();
+    go('landing');
+    return;
+  }
+
+  // Check for existing session
+  const {data:{session}}=await sb.auth.getSession();
+  hideLo();
+  if(session){
+    currentUser=session.user;
+    updateUserUI();
+    go('dashboard');
+    loadVideos(); // non-blocking — page shows immediately
+  } else {
+    go('landing');
+  }
+
+  // Listen for auth state changes (login/logout)
+  sb.auth.onAuthStateChange(async(_event,session)=>{
+    if(session){
+      currentUser=session.user;
+      updateUserUI();
+      loadVideos(); // non-blocking
+    } else {
+      currentUser=null;
+      videos=[];
+    }
+  });
+}
+
+function hideLo(){
+  const el=document.getElementById('app-loading');
+  if(el){el.style.opacity='0';el.style.transition='opacity .3s';setTimeout(()=>el.remove(),300)}
+}
+
+// ══════════════════════════════
+// STATE
+// ══════════════════════════════
+const SAMPLE_VIDEO='https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
+const MAX_FREE=10;
+let videos=[];
+let currentUser=null;
+let selectedTone='luxury';
+let selectedDuration=5;
+let selectedRatio='1280:720';
+let generating=false;
+let currentFilter='all';
+let pricingPeriod='monthly';
+let uploadedImageBase64='';
+let uploadedImageType='';
+
+const TONES={
+  luxury:{label:'Luxury',system:'Write a sophisticated Instagram caption (2-3 lines, max 180 chars) for a luxury brand. End with 3–4 premium hashtags. No emojis. Refined, elegant, aspirational.'},
+  bold:{label:'Bold',system:'Write a punchy, confident Instagram caption (1-2 lines). Empowering, direct tone. 3–4 power hashtags. Short and impactful.'},
+  minimal:{label:'Minimal',system:'Write a minimalist Instagram caption. ONE short sentence only. Max 80 characters. Ultra-clean, no filler. 2 hashtags.'},
+  playful:{label:'Playful',system:'Write a fun, relatable Instagram caption. 2-3 lines. Light humor. 4-5 trending hashtags with 2-3 fitting emojis.'},
+  cinematic:{label:'Cinematic',system:'Write a cinematic, poetic Instagram caption. 2-3 evocative lines, like a film title card. Atmospheric. 3 hashtags.'},
+};
+
+// ══════════════════════════════
+// ROUTER
+// ══════════════════════════════
+const pages=['landing','auth','dashboard','pricing','settings','admin'];
+function go(page){
+  pages.forEach(p=>{
+    const el=document.getElementById('page-'+p);
+    if(el){
+      el.classList.remove('active');
+      el.style.display='none';
+    }
+  });
+  const target=document.getElementById('page-'+page);
+  if(target){
+    target.classList.add('active');
+    target.style.display='block';
+    window.scrollTo(0,0);
+  }
+  if(page==='dashboard'){renderGrid();updateStats();loadContentPlan();renderAdLibrary();}
+  if(page==='admin'){loadAdminDashboard();}
+  if(page==='settings'){loadSettingsPage();}
+}
+
+// ══════════════════════════════
+// AUTH
+// ══════════════════════════════
+let authMode='signup';
+
+function switchAuth(mode){
+  authMode=mode;
+  const tabs=document.querySelectorAll('.auth-tab');
+  tabs[0].classList.toggle('active',mode==='signup');
+  tabs[1].classList.toggle('active',mode==='signin');
+  document.getElementById('signup-fields').style.display=mode==='signup'?'block':'none';
+  document.getElementById('auth-submit-btn').textContent=mode==='signup'?'Create Free Account →':'Sign In →';
+  document.getElementById('auth-switch-text').innerHTML=mode==='signup'
+    ?'Already have an account? <a onclick="switchAuth(\'signin\')">Sign in</a>'
+    :'Don\'t have an account? <a onclick="switchAuth(\'signup\')">Sign up</a>';
+  setAuthError('');
+}
+
+function setAuthError(msg){
+  const el=document.getElementById('auth-error');
+  if(!el)return;
+  el.textContent=msg;
+  el.classList.toggle('show',!!msg);
+}
+
+async function handleForgotPassword(){
+  const email=document.getElementById('auth-email').value.trim();
+  if(!email){setAuthError('Enter your email first');return}
+  try{
+    const{error}=await sb.auth.resetPasswordForEmail(email,{
+      redirectTo:window.location.origin
+    });
+    if(error)throw error;
+    toast('Password reset email sent ✦','success');
+  }catch(e){
+    setAuthError('Could not send reset email — please try again');
+  }
+}
+
+async function handleAuth(){
+  if(!sb){
+    toast('Supabase not connected','error');
+    return;
+  }
+  const email=document.getElementById('auth-email').value.trim();
+  const password=document.getElementById('auth-password').value;
+  if(!email||!password){setAuthError('Please enter your email and password.');return}
+
+  const btn=document.getElementById('auth-submit-btn');
+  btn.disabled=true;
+  btn.textContent='Please wait…';
+  setAuthError('');
+
+  try{
+    let result;
+    if(authMode==='signup'){
+      result=await sb.auth.signUp({email,password,options:{emailRedirectTo:null}});
+    } else {
+      result=await sb.auth.signInWithPassword({email,password});
+    }
+
+    if(result.error){
+      setAuthError(result.error.message);
+      btn.disabled=false;
+      btn.textContent=authMode==='signup'?'Create Free Account →':'Sign In →';
+      return;
+    }
+
+    // Manually grab session in case onAuthStateChange doesn't fire
+    const{data:{session}}=await sb.auth.getSession();
+    if(session){
+      currentUser=session.user;
+      updateUserUI();
+      await loadVideos();
+      go('dashboard');
+      toast(authMode==='signup'?'Welcome to LuxClip! ✦':'Welcome back! ✦','success');
+      return;
+    }
+
+    // Sign up with email confirmation pending
+    if(authMode==='signup'&&result.data.user&&!session){
+      setAuthError('');
+      btn.disabled=false;
+      btn.textContent='Create Free Account →';
+      toast('Check your email to confirm your account ✦','info');
+      return;
+    }
+
+    setAuthError('Could not sign in. Please try again.');
+    btn.disabled=false;
+    btn.textContent=authMode==='signup'?'Create Free Account →':'Sign In →';
+
+  }catch(e){
+    setAuthError('Something went wrong. Please try again.');
+    btn.disabled=false;
+    btn.textContent=authMode==='signup'?'Create Free Account →':'Sign In →';
+  }
+}
+
+async function handleSignOut(){
+  if(sb)await sb.auth.signOut();
+  currentUser=null;
+  videos=[];
+  renderGrid();
+  go('landing');
+  toast('Signed out','info');
+}
+
+function updateUserUI(){
+  const email=currentUser?.email||'';
+  const raw=email.split('@')[0]||'User';
+  // Clean up dots and underscores, capitalise first word only
+  const name=raw.split(/[._]/)[0];
+  const fn=name.charAt(0).toUpperCase()+name.slice(1).toLowerCase();
+  const initial=fn.charAt(0).toUpperCase();
+  ['sidebar-avatar','settings-avatar'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=initial});
+  ['sidebar-name','settings-name'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=fn});
+  const df=document.getElementById('dash-first-name');if(df)df.textContent=fn;
+  const sf=document.getElementById('s-first');if(sf&&!sf.value)sf.value=fn;
+}
+
+// ══════════════════════════════
+// DATABASE — Videos
+// ══════════════════════════════
+
+async function loadVideos(){
+  if(!sb||!currentUser){videos=[];renderGrid();updateStats();return}
+  try{
+    const{data,error}=await sb
+      .from('videos')
+      .select('*')
+      .eq('user_id',currentUser.id)
+      .order('created_at',{ascending:false});
+    if(error)throw error;
+    videos=(data||[]).map(r=>({
+      id:r.id,
+      prompt:r.prompt,
+      tone:r.tone||'luxury',
+      video_url:r.video_url||SAMPLE_VIDEO,
+      caption:r.caption||'',
+      status:r.status||'done',
+      created:r.created_at,
+    }));
+  }catch(e){
+    console.warn('loadVideos failed, using local fallback',e);
+    videos=JSON.parse(localStorage.getItem('lr_videos')||'[]');
+  }
+  renderGrid();updateStats();
+}
+
+async function saveVideo(video){
+  if(!sb||!currentUser){
+    // Fallback to localStorage if Supabase not configured
+    const local=JSON.parse(localStorage.getItem('lr_videos')||'[]');
+    const idx=local.findIndex(v=>v.id===video.id);
+    if(idx>=0)local[idx]=video; else local.unshift(video);
+    localStorage.setItem('lr_videos',JSON.stringify(local));
+    return video.id;
+  }
+  try{
+    const row={
+      user_id:currentUser.id,
+      prompt:video.prompt,
+      tone:video.tone,
+      video_url:video.video_url,
+      caption:video.caption,
+      status:video.status,
+      task_id:video.task_id||null,
+    };
+    // If id is a timestamp (local temp), insert fresh; otherwise update
+    if(typeof video.id==='number'){
+      const{data,error}=await sb.from('videos').insert(row).select().single();
+      if(error)throw error;
+      video.id=data.id; // swap temp id for DB uuid
+      return data.id;
+    } else {
+      const{error}=await sb.from('videos').update(row).eq('id',video.id);
+      if(error)throw error;
+      return video.id;
+    }
+  }catch(e){
+    console.warn('saveVideo DB failed, local fallback',e);
+    const local=JSON.parse(localStorage.getItem('lr_videos')||'[]');
+    local.unshift(video);
+    localStorage.setItem('lr_videos',JSON.stringify(local));
+    return video.id;
+  }
+}
+
+async function deleteVideoFromDB(id){
+  if(sb&&currentUser&&typeof id!=='number'){
+    await sb.from('videos').delete().eq('id',id).eq('user_id',currentUser.id);
+  } else {
+    const local=JSON.parse(localStorage.getItem('lr_videos')||'[]');
+    localStorage.setItem('lr_videos',JSON.stringify(local.filter(v=>v.id!==id)));
+  }
+}
+
+// ══════════════════════════════
+// CONTENT PLAN SYSTEM
+// ══════════════════════════════
+let contentPlan=[];
+let selectedGoal='followers';
+let selectedObTone='educational';
+let selectedMode='personal';
+let selectedAudience='';
+let activeCalDay=null;
+let currentObScreen=1;
+
+const MODE_LABELS={personal:'📈 Personal Brand',local:'📍 Local Business',product:'🛒 Product Brand'}
+const MODE_NICHE_HINTS={personal:'e.g. fitness coaching, mindset, business strategy…',local:'e.g. restaurant, hair salon, gym…',product:'e.g. skincare, fashion, supplements…'}
+const MODE_GOAL_OPTIONS={
+  personal:[{val:'followers',label:'📈 Grow followers'},{val:'clients',label:'🤝 Get clients'},{val:'authority',label:'👑 Build authority'}],
+  local:[{val:'footfall',label:'📍 Drive foot traffic'},{val:'bookings',label:'📅 Get bookings'},{val:'awareness',label:'📢 Build awareness'}],
+  product:[{val:'sales',label:'💰 Drive sales'},{val:'brand',label:'✨ Build brand'},{val:'viral',label:'🚀 Go viral'}],
+}
+
+function showOnboarding(){
+  const modal=document.getElementById('onboarding-modal');
+  modal.classList.add('open');
+  modal.style.display='flex';
+  goObScreen(1);
+}
+
+function hideOnboarding(){
+  const modal=document.getElementById('onboarding-modal');
+  modal.classList.remove('open');
+  modal.style.display='none';
+}
+
+function goObScreen(n){
+  currentObScreen=n;
+  document.getElementById('ob-screen-1').style.display=n===1?'block':'none';
+  document.getElementById('ob-screen-2').style.display=n===2?'block':'none';
+  document.getElementById('ob-screen-3').style.display=n===3?'block':'none';
+
+  // Update progress bar
+  for(let i=1;i<=3;i++){
+    const bar=document.getElementById('ob-prog-'+i);
+    if(bar)bar.style.background=i<=n?'var(--gold)':'var(--border2)';
+  }
+
+  if(n===3) buildProfileSummary();
+}
+
+function selectMode(mode){
+  selectedMode=mode;
+  document.querySelectorAll('.ob-mode-btn').forEach(b=>b.classList.remove('selected'));
+  document.getElementById('mode-'+mode).classList.add('selected');
+
+  // Update screen 2 for the mode
+  document.getElementById('ob-screen2-title').textContent=
+    mode==='personal'?'Tell us about your brand':
+    mode==='local'?'Tell us about your business':
+    'Tell us about your product';
+
+  document.getElementById('ob-niche-label').textContent=
+    mode==='personal'?'Your niche':
+    mode==='local'?'Your business type':
+    'Your product category';
+
+  document.getElementById('ob-niche').placeholder=MODE_NICHE_HINTS[mode];
+
+  // Update goal buttons for mode
+  const goals=MODE_GOAL_OPTIONS[mode];
+  const goalsEl=document.getElementById('ob-goals');
+  goalsEl.innerHTML=goals.map(g=>`<button class="tone-btn" data-goal="${g.val}" onclick="selectGoal(this)">${g.label}</button>`).join('');
+  selectedGoal=goals[0].val;
+
+  setTimeout(()=>goObScreen(2),150);
+}
+
+function selectGoal(btn){
+  document.querySelectorAll('#ob-goals .tone-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  selectedGoal=btn.dataset.goal;
+}
+
+function selectObTone(btn){
+  document.querySelectorAll('[data-tone]').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  selectedObTone=btn.dataset.tone;
+  selectedTone=btn.dataset.tone;
+}
+
+function buildProfileSummary(){
+  const niche=document.getElementById('ob-niche').value.trim();
+  const audience=document.getElementById('ob-audience').value.trim();
+  selectedAudience=audience;
+
+  document.getElementById('profile-mode').textContent=MODE_LABELS[selectedMode]||selectedMode;
+  document.getElementById('profile-niche').textContent=niche||'—';
+  document.getElementById('profile-audience').textContent=audience||'—';
+  document.getElementById('profile-goal').textContent=selectedGoal;
+  document.getElementById('profile-tone').textContent=selectedObTone;
+
+  const summaries={
+    personal:`We'll create ${selectedObTone} content designed to attract ${audience||'your audience'} in the ${niche||'your'} space. Hooks will be crafted to build authority and ${selectedGoal==='clients'?'convert followers into clients':'grow your following'}.`,
+    local:`We'll create content that showcases your ${niche||'business'} to local customers. Each post will be designed to ${selectedGoal==='footfall'?'drive foot traffic':'generate bookings'} with a ${selectedObTone} tone.`,
+    product:`We'll create product-focused content targeting ${audience||'potential buyers'}. Videos will highlight your ${niche||'product'} with a ${selectedObTone} aesthetic to drive ${selectedGoal==='sales'?'conversions':'brand awareness'}.`,
+  };
+  document.getElementById('profile-summary').textContent=summaries[selectedMode]||'';
+}
+
+async function generateContentPlan(){
+  const niche=document.getElementById('ob-niche').value.trim();
+  const errEl=document.getElementById('ob-error');
+  if(!niche){errEl.textContent='Please enter your niche';errEl.style.display='block';goObScreen(2);return}
+  errEl.style.display='none';
+
+  if(!selectedGoal)selectedGoal='followers';
+  if(!selectedObTone)selectedObTone='educational';
+
+  // Save content profile to localStorage
+  const profile={mode:selectedMode,niche,audience:selectedAudience,goal:selectedGoal,tone:selectedObTone};
+  localStorage.setItem('lx_profile',JSON.stringify(profile));
+  localStorage.setItem('lx_niche',niche);
+  localStorage.setItem('lx_goal',selectedGoal);
+  localStorage.setItem('lx_tone',selectedObTone);
+
+  hideOnboarding();
+  document.getElementById('calendar-empty').style.display='none';
+  document.getElementById('calendar-loading').style.display='block';
+  document.getElementById('calendar-grid').innerHTML='';
+
+  try{
+    let res, attempts = 0;
+    while(attempts < 3){
+      try{
+        res=await fetch(`${SB_URL}/functions/v1/start-video`,{
+          method:'POST',
+          headers:{'Content-Type':'application/json','Authorization':`Bearer ${SB_ANON}`},
+          body:JSON.stringify({
+            action:'plan',
+            niche,
+            audience:selectedAudience,
+            mode:selectedMode,
+            goal:selectedGoal,
+            tone:selectedObTone,
+            today:new Date().toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'})
+          })
+        });
+        break;
+      }catch(err){
+        attempts++;
+        if(attempts>=3)throw err;
+        await new Promise(r=>setTimeout(r,3000));
+      }
+    }
+    const data=await res.json();
+    const plan=data.plan||[];
+    contentPlan=plan;
+
+    // Save to Supabase
+    if(sb&&currentUser){
+      await sb.from('content_plans').delete().eq('user_id',currentUser.id);
+      const rows=plan.map(p=>({
+        user_id:currentUser.id,
+        day:p.day,
+        post_type:p.postType,
+        hook:p.hook,
+        topic:p.topic,
+        tone:selectedObTone,
+        status:'pending',
+      }));
+      await sb.from('content_plans').insert(rows);
+    }
+
+    // Store niche in localStorage
+    localStorage.setItem('lx_niche',niche);
+    localStorage.setItem('lx_goal',selectedGoal);
+    localStorage.setItem('lx_tone',selectedObTone);
+
+    document.getElementById('plan-niche-label').textContent=`${niche} · ${selectedGoal} · ${selectedObTone}`;
+    console.log('Rendering calendar with', plan.length, 'days');
+    renderCalendar(plan);
+    console.log('Calendar rendered');
+  }catch(e){
+    console.error('Plan generation error:',e);
+    toast('Could not generate plan — please try again','error');
+    document.getElementById('calendar-empty').style.display='block';
+  }
+
+  document.getElementById('calendar-loading').style.display='none';
+}
+
+function renderCalendar(plan){
+  const grid=document.getElementById('calendar-grid');
+  if(!plan||plan.length===0){
+    document.getElementById('calendar-empty').style.display='block';
+    return;
+  }
+  document.getElementById('calendar-empty').style.display='none';
+  grid.innerHTML=plan.map(p=>`
+    <div class="cal-card ${p.video_id?'has-video':''}" id="cal-card-${p.day}">
+      ${p.video_id?'<div class="cal-done-badge">✦ Done</div>':''}
+      <div class="cal-day-num">Day ${p.day}</div>
+      <div class="cal-day-date">${p.date||''}</div>
+      <span class="cal-post-type ${(p.postType||p.post_type||'reel').toLowerCase()}">${p.postType||p.post_type||'Reel'}</span>
+      <div class="cal-hook">${esc(p.hook||'')}</div>
+      <div class="cal-topic" style="margin-bottom:8px">${esc(p.topic||'')}</div>
+      <div style="font-size:.68rem;color:var(--gold-dim);font-style:italic;margin-bottom:10px;padding:6px 8px;background:rgba(212,168,83,.05);border-radius:4px;border-left:2px solid var(--gold3)">🎬 ${esc(p.videoPrompt||p.topic||'')}</div>
+      ${!p.video_id?`<button class="cal-gen-btn" onclick="openCalDay(${p.day})">🎬 Generate Reel</button>`:'<div style="font-size:.7rem;color:var(--green);text-align:center;padding:6px">✦ Video Created</div>'}
+    </div>`).join('');
+}
+
+function openCalDay(day){
+  const plan=contentPlan.find(p=>p.day===day);
+  if(!plan)return;
+  activeCalDay=plan;
+
+  document.getElementById('quick-gen-title').textContent=`✦ Day ${day} — ${plan.postType||plan.post_type}`;
+  document.getElementById('quick-gen-subtitle').textContent='Edit and customise before generating';
+
+  // Fill all editable fields
+  const hookEl=document.getElementById('quick-hook');
+  const topicEl=document.getElementById('quick-topic');
+  if(hookEl)hookEl.value=plan.hook||'';
+  if(topicEl)topicEl.value=plan.topic||'';
+  document.getElementById('quick-prompt').value=plan.videoPrompt||plan.topic||'';
+
+  // Pre-fill image generator
+  const imgPromptEl=document.getElementById('img-gen-prompt');
+  if(imgPromptEl)imgPromptEl.value=plan.videoPrompt||plan.topic||'';
+  document.getElementById('quick-generate-section').style.display='block';
+  document.getElementById('quick-generate-section').scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+function hideQuickGenerate(){
+  document.getElementById('quick-generate-section').style.display='none';
+  activeCalDay=null;
+}
+
+async function handleQuickGenerate(){
+  if(generating){toast('Already generating — please wait','info');return}
+  const prompt=document.getElementById('quick-prompt').value.trim();
+  const hook=document.getElementById('quick-hook')?.value.trim()||'';
+  const topic=document.getElementById('quick-topic')?.value.trim()||'';
+  if(!prompt){toast('Enter a video prompt first','error');return}
+
+  generating=true;
+  const btn=document.getElementById('quick-gen-btn');
+  btn.disabled=true;
+  btn.textContent='Generating…';
+
+  const tone=selectedObTone||selectedTone||'luxury';
+  const video={
+    id:Date.now(),
+    prompt,tone,
+    video_url:SAMPLE_VIDEO,caption:'',status:'pending',
+    task_id:'',
+    created:new Date().toISOString(),
+  };
+  videos.unshift(video);renderGrid();updateStats();
+
+  try{
+    const startRes=await fetch(`${SB_URL}/functions/v1/start-video`,{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Authorization':`Bearer ${SB_ANON}`},
+    body:JSON.stringify({prompt:prompt,tone:selectedObTone||selectedTone||'luxury',duration:6,action:'video',niche:localStorage.getItem('lx_niche')||'luxury',userId:currentUser?.id||''}),
+    });
+    const startData=await startRes.json();
+    console.log('Start response:',JSON.stringify(startData));
+    if(!startRes.ok||startData.error){
+      toast(startData.error||'Video generation failed — please try again','error');
+      btn.disabled=false;btn.textContent='🎬 Generate Reel';
+      generating=false;
+      videos.shift();renderGrid();
+      return;
+    }
+    video.caption=fallbackCaption();
+    video.task_id=startData.taskId||startData.requestId||'';
+
+    await saveVideo(video);
+    renderGrid();
+    btn.disabled=false;btn.textContent='🎬 Generate Reel';
+    generating=false;
+    if(video.task_id){
+      toast('Reel generating — ready in ~60 seconds ✦','info');
+      watchVideoJob(video);
+    }else{
+      toast('Could not start generation — please try again','error');
+    }
+  }catch(e){
+    console.warn('Quick generate failed',e);
+    video.status='done';
+    await saveVideo(video);
+    renderGrid();updateStats();
+    btn.disabled=false;btn.textContent='🎬 Generate Reel';
+    generating=false;
+  }
+}
+
+async function loadContentPlan(){
+  if(!sb||!currentUser)return;
+
+  // Pre-warm the function — delayed so it doesn't block initial render
+  setTimeout(()=>{
+    fetch(`${SB_URL}/functions/v1/start-video`,{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Authorization':`Bearer ${SB_ANON}`},
+      body:JSON.stringify({action:'warm'}),
+    }).catch(()=>{});
+  }, 2000);
+  try{
+    const{data}=await sb.from('content_plans')
+      .select('*')
+      .eq('user_id',currentUser.id)
+      .order('day');
+    if(data&&data.length>0){
+      contentPlan=data.map(p=>({
+        day:p.day,
+        date:'',
+        postType:p.post_type,
+        hook:p.hook,
+        topic:p.topic,
+        videoPrompt:p.topic,
+        video_id:p.video_id,
+      }));
+      const niche=localStorage.getItem('lx_niche')||'';
+      const goal=localStorage.getItem('lx_goal')||'';
+      const tone=localStorage.getItem('lx_tone')||'';
+      if(niche)document.getElementById('plan-niche-label').textContent=`${niche} · ${goal} · ${tone}`;
+      renderCalendar(contentPlan);
+    }else{
+      // No plan yet — show onboarding automatically
+      document.getElementById('calendar-empty').style.display='block';
+      setTimeout(()=>showOnboarding(), 600);
+    }
+  }catch(e){
+    document.getElementById('calendar-empty').style.display='block';
+    setTimeout(()=>showOnboarding(), 600);
+  }
+}
+const PROMPTS=[
+  // Fashion
+  {cat:'fashion',title:'Silk dress flow',prompt:'A flowing silk luxury dress in champagne gold, slow motion fabric movement, soft studio lighting, white seamless background, editorial fashion aesthetic, extreme close-up of fabric texture'},
+  {cat:'fashion',title:'Leather handbag',prompt:'A premium Italian leather handbag on a marble pedestal, slow cinematic orbit, warm golden hour lighting from the left, shallow depth of field, luxury fashion editorial style'},
+  {cat:'fashion',title:'Watch reveal',prompt:'A luxury watch sliding into frame on a dark reflective surface, slow push in, dramatic side lighting, lens flare, cinematic anamorphic look, extreme close-up of dial'},
+  {cat:'fashion',title:'Sunglasses drop',prompt:'Premium sunglasses falling in slow motion onto white marble, soft bounce, studio lighting, clean white background, editorial product shot, 4K detail'},
+  {cat:'fashion',title:'Shoe close-up',prompt:'A luxury designer shoe on polished black marble, slow dolly in, dramatic spotlight from above, deep shadows, high contrast editorial fashion look'},
+  // Product
+  {cat:'product',title:'Perfume golden hour',prompt:'A luxury perfume bottle on Italian white marble, golden hour sunlight from the left, slow cinematic zoom in, warm amber tones, soft bokeh background, condensation on glass'},
+  {cat:'product',title:'Skincare minimal',prompt:'Luxury skincare cream jar on frosted glass surface, slow reveal from below, clean minimal white studio, soft diffused lighting, product commercial aesthetic'},
+  {cat:'product',title:'Jewellery sparkle',prompt:'Diamond jewellery necklace laid on black velvet, slow rotation, dramatic spotlight creating prismatic sparkle, macro close-up, deep rich blacks'},
+  {cat:'product',title:'Candle ambience',prompt:'A luxury scented candle with soft flame on dark wood surface, slow zoom in on flame, warm candlelight glow, dark moody atmosphere, smoke curling upward'},
+  {cat:'product',title:'Champagne pour',prompt:'Champagne being poured into a crystal flute in slow motion, golden bubbles rising, dark elegant background, dramatic side lighting, luxury celebration aesthetic'},
+  // Lifestyle
+  {cat:'lifestyle',title:'Morning coffee ritual',prompt:'A luxury ceramic coffee cup on a marble counter, steam rising in morning light, slow dolly in, warm golden morning tones, editorial lifestyle aesthetic'},
+  {cat:'lifestyle',title:'Rooftop city view',prompt:'A luxury penthouse rooftop at blue hour, city lights bokeh below, slow pan across the view, cool blue tones, cinematic wide shot'},
+  {cat:'lifestyle',title:'Private jet interior',prompt:'Interior of a private jet cabin, leather seats, soft cabin lighting, slow push through the aisle, warm luxury tones, cinematic travel aesthetic'},
+  {cat:'lifestyle',title:'Hotel suite reveal',prompt:'Luxury hotel suite reveal shot, slow push through doors, warm golden interior lighting, soft bed linen, city view through floor-to-ceiling windows'},
+  {cat:'lifestyle',title:'Spa serenity',prompt:'Luxury spa treatment room, white orchid, water surface with petals, slow drone-like rise, soft diffused natural light, peaceful minimal aesthetic'},
+  // Food
+  {cat:'food',title:'Chocolate pour',prompt:'Dark melted chocolate being poured slowly over a luxury dessert, extreme slow motion, warm studio lighting, dark moody background, editorial food photography style'},
+  {cat:'food',title:'Sushi artistry',prompt:'Chef plating premium sushi close-up, slow motion chopstick placement, dark slate surface, soft warm restaurant lighting, cinematic food documentary style'},
+  {cat:'food',title:'Wine swirl',prompt:'Deep red wine being swirled in a crystal glass, slow motion, warm candlelight behind, close-up of liquid movement, luxury restaurant ambience'},
+  {cat:'food',title:'Truffle shaving',prompt:'Black truffle being shaved over a luxury pasta dish in slow motion, steam rising, dark restaurant background, warm golden lighting, editorial food aesthetic'},
+  // Nature
+  {cat:'nature',title:'Ocean at dawn',prompt:'Luxury beachfront at golden sunrise, slow motion gentle waves on white sand, warm pink and gold tones, aerial perspective descending, cinematic travel aesthetic'},
+  {cat:'nature',title:'Forest mist',prompt:'Misty luxury forest at dawn, soft light filtering through trees, slow push forward through the mist, cool blue-green tones, cinematic nature documentary style'},
+  {cat:'nature',title:'Mountain snow',prompt:'Snow-capped mountain peak at sunrise, golden light on white snow, slow pan across the landscape, crisp cold atmosphere, cinematic wide shot'},
+  {cat:'nature',title:'Desert dunes',prompt:'Luxury desert landscape at golden hour, slow aerial drift over sand dunes, warm amber and gold tones, long shadows, cinematic travel film aesthetic'},
+];
+
+let currentPromptCat='all';
+
+function renderPromptLibrary(){
+  const grid=document.getElementById('prompt-library-grid');
+  if(!grid)return;
+  const filtered=currentPromptCat==='all'?PROMPTS:PROMPTS.filter(p=>p.cat===currentPromptCat);
+  grid.innerHTML=filtered.map(p=>`
+    <div class="prompt-card" onclick="usePrompt(${JSON.stringify(p.prompt).replace(/"/g,'&quot;')})">
+      <div class="prompt-card-use">Use ✦</div>
+      <div class="prompt-card-cat">${p.cat}</div>
+      <div class="prompt-card-title">${p.title}</div>
+      <div class="prompt-card-preview">${p.prompt}</div>
+    </div>`).join('');
+}
+
+function filterPrompts(cat,el){
+  currentPromptCat=cat;
+  document.querySelectorAll('#prompt-cats .filter-pill').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  renderPromptLibrary();
+}
+
+function usePrompt(prompt){
+  const ta=document.getElementById('dash-prompt');
+  if(ta){
+    ta.value=prompt;
+    ta.focus();
+    ta.scrollIntoView({behavior:'smooth',block:'center'});
+    toast('Prompt loaded — customise and generate ✦','info');
+  }
+}
+
+// ══════════════════════════════
+// AD IMAGE CREATOR
+// ══════════════════════════════
+let generatedAdUrl = '';
+let adCtaColor = 'linear-gradient(135deg,#f7971e,#ffd200)';
+
+function setAdColor(btn){
+  document.querySelectorAll('[data-adcolor]').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  adCtaColor = btn.dataset.adcolor;
+  updateAdPreview();
+}
+
+function updateAdPreview(){
+  const headline = document.getElementById('ad-headline')?.value || '';
+  const sub = document.getElementById('ad-sub')?.value || '';
+  const cta = document.getElementById('ad-cta')?.value || '';
+  const hSize = document.getElementById('ad-headline-size')?.value || 18;
+  const sSize = document.getElementById('ad-sub-size')?.value || 12;
+  const cSize = document.getElementById('ad-cta-size')?.value || 14;
+
+  const h = document.getElementById('ad-preview-headline');
+  const s = document.getElementById('ad-preview-sub');
+  const c = document.getElementById('ad-preview-cta');
+
+  if(h){ h.textContent = headline.toUpperCase(); h.style.fontSize = hSize+'px'; }
+  if(s){ s.textContent = sub; s.style.fontSize = sSize+'px'; s.style.display = sub ? 'block' : 'none'; }
+  if(c){
+    c.textContent = cta.toUpperCase();
+    c.style.fontSize = cSize+'px';
+    c.style.background = adCtaColor;
+    c.style.display = cta ? 'block' : 'none';
+  }
+}
+
+function initAdDrag(){
+  const wrap = document.getElementById('ad-preview-wrap');
+  if(!wrap) return;
+  const draggables = ['ad-preview-sub','ad-preview-cta','ad-preview-headline'];
+
+  draggables.forEach(id => {
+    const el = document.getElementById(id);
+    if(!el) return;
+    let isDragging = false, startX, startY, startTop, startLeft;
+
+    el.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      const rect = wrap.getBoundingClientRect();
+      const elRect = el.getBoundingClientRect();
+      startX = e.clientX;
+      startY = e.clientY;
+      startTop = (elRect.top - rect.top) / rect.height * 100;
+      startLeft = (elRect.left - rect.left) / rect.width * 100;
+      el.style.left = startLeft + '%';
+      el.style.right = 'auto';
+      el.style.top = startTop + '%';
+      el.style.bottom = 'auto';
+      el.style.cursor = 'grabbing';
+      e.preventDefault();
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      if(!isDragging) return;
+      const rect = wrap.getBoundingClientRect();
+      const dx = (e.clientX - startX) / rect.width * 100;
+      const dy = (e.clientY - startY) / rect.height * 100;
+      el.style.left = Math.max(0, Math.min(80, startLeft + dx)) + '%';
+      el.style.top = Math.max(0, Math.min(85, startTop + dy)) + '%';
+    });
+
+    document.addEventListener('mouseup', () => {
+      if(isDragging){ isDragging = false; el.style.cursor = 'grab'; }
+    });
+
+    // Touch support
+    el.addEventListener('touchstart', (e) => {
+      const touch = e.touches[0];
+      isDragging = true;
+      const rect = wrap.getBoundingClientRect();
+      const elRect = el.getBoundingClientRect();
+      startX = touch.clientX;
+      startY = touch.clientY;
+      startTop = (elRect.top - rect.top) / rect.height * 100;
+      startLeft = (elRect.left - rect.left) / rect.width * 100;
+      el.style.left = startLeft + '%';
+      el.style.right = 'auto';
+      el.style.top = startTop + '%';
+      el.style.bottom = 'auto';
+    }, {passive:true});
+
+    document.addEventListener('touchmove', (e) => {
+      if(!isDragging) return;
+      const touch = e.touches[0];
+      const rect = wrap.getBoundingClientRect();
+      const dx = (touch.clientX - startX) / rect.width * 100;
+      const dy = (touch.clientY - startY) / rect.height * 100;
+      el.style.left = Math.max(0, Math.min(80, startLeft + dx)) + '%';
+      el.style.top = Math.max(0, Math.min(85, startTop + dy)) + '%';
+    }, {passive:true});
+
+    document.addEventListener('touchend', () => { isDragging = false; });
+  });
+}
+
+async function generateAdBackground(){
+  const sceneEl = document.getElementById('ad-scene');
+  const styleEl = document.getElementById('ad-style');
+  const scene = sceneEl?.value === 'custom'
+    ? document.getElementById('ad-custom-scene-text')?.value.trim()
+    : sceneEl?.value;
+  const style = styleEl?.value || 'ultra realistic warm lighting';
+
+  const btn = document.getElementById('ad-bg-btn');
+  const loading = document.getElementById('ad-gen-loading');
+  const error = document.getElementById('ad-gen-error');
+
+  if(btn) btn.disabled = true;
+  loading.style.display = 'block';
+  error.style.display = 'none';
+
+  const bgPrompt = `${scene}. ${style}. No text, no words, no logos, no signs. Clean background image for social media ad. High quality, professional photography.`;
+
+  try{
+    const res = await fetch(`${SB_URL}/functions/v1/start-video`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${SB_ANON}` },
+      body: JSON.stringify({ action: 'image', prompt: bgPrompt })
+    });
+    const data = await res.json();
+    if(data.imageUrl){
+      generatedAdUrl = data.imageUrl;
+      document.getElementById('ad-bg-img').src = data.imageUrl;
+      document.getElementById('ad-composer').style.display = 'block';
+      updateAdPreview();
+      initAdDrag();
+      fetch(data.imageUrl).then(r=>r.blob()).then(blob=>{const reader=new FileReader();reader.onload=(e)=>{document.getElementById('ad-bg-img').src=e.target.result;generatedAdUrl=e.target.result;saveAdToLibrary(e.target.result);};reader.readAsDataURL(blob);});
+      toast('Background generated — adding text overlay support…','info');
+    } else {
+      throw new Error('No image');
+    }
+  }catch(e){
+    error.textContent = 'Could not generate background — please try again';
+    error.style.display = 'block';
+  }
+
+  if(btn){ btn.disabled = false; btn.textContent = '✨ Generate Background Image'; }
+  loading.style.display = 'none';
+}
+
+async function downloadAdComposite(){
+  const wrap = document.getElementById('ad-preview-wrap');
+  const bgImg = document.getElementById('ad-bg-img');
+  if(!wrap || !bgImg || !bgImg.src) return;
+
+  try{
+    toast('Preparing download…','info');
+
+    const canvas = document.createElement('canvas');
+    const size = 1080;
+    canvas.width = size;
+    canvas.height = size;
+    const ctx = canvas.getContext('2d');
+
+    const img = new Image();
+    img.onload = () => {
+      // Draw background
+      ctx.drawImage(img, 0, 0, size, size);
+
+      // Dark gradient overlay
+      const grad = ctx.createLinearGradient(0, 0, 0, size);
+      grad.addColorStop(0, 'rgba(0,0,0,0.4)');
+      grad.addColorStop(0.4, 'rgba(0,0,0,0.05)');
+      grad.addColorStop(1, 'rgba(0,0,0,0.5)');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, size, size);
+
+      const wrapRect = wrap.getBoundingClientRect();
+
+      // Draw headline
+      const hEl = document.getElementById('ad-preview-headline');
+      const hSize = parseInt(document.getElementById('ad-headline-size')?.value || 18);
+      if(hEl && hEl.textContent){
+        const hRect = hEl.getBoundingClientRect();
+        const hY = ((hRect.top - wrapRect.top) / wrapRect.height) * size;
+        ctx.font = `900 ${hSize * 3}px Arial`;
+        ctx.fillStyle = 'white';
+        ctx.textAlign = 'center';
+        ctx.shadowColor = 'rgba(0,0,0,0.9)';
+        ctx.shadowBlur = 15;
+        ctx.fillText(hEl.textContent, size/2, hY + (hSize * 3));
+      }
+
+      // Draw subheadline
+      const sEl = document.getElementById('ad-preview-sub');
+      const sSize = parseInt(document.getElementById('ad-sub-size')?.value || 12);
+      if(sEl && sEl.textContent){
+        const sRect = sEl.getBoundingClientRect();
+        const sY = ((sRect.top - wrapRect.top) / wrapRect.height) * size;
+        ctx.font = `400 ${sSize * 3}px Arial`;
+        ctx.fillStyle = 'rgba(255,255,255,0.95)';
+        ctx.shadowBlur = 8;
+        ctx.fillText(sEl.textContent, size/2, sY + (sSize * 3));
+      }
+
+      // Draw CTA button
+      const cEl = document.getElementById('ad-preview-cta');
+      const cSize = parseInt(document.getElementById('ad-cta-size')?.value || 14);
+      if(cEl && cEl.textContent){
+        const cRect = cEl.getBoundingClientRect();
+        const cY = ((cRect.top - wrapRect.top) / wrapRect.height) * size;
+        const btnW = size * 0.7;
+        const btnH = cSize * 5;
+        const btnX = (size - btnW) / 2;
+
+        ctx.shadowColor = 'rgba(0,0,0,0.5)';
+        ctx.shadowBlur = 20;
+        const btnGrad = ctx.createLinearGradient(btnX, 0, btnX + btnW, 0);
+        if(adCtaColor.includes('f7971e')){ btnGrad.addColorStop(0,'#f7971e'); btnGrad.addColorStop(1,'#ffd200'); }
+        else if(adCtaColor.includes('e6683c')){ btnGrad.addColorStop(0,'#e6683c'); btnGrad.addColorStop(1,'#dc2743'); }
+        else if(adCtaColor.includes('11998e')){ btnGrad.addColorStop(0,'#11998e'); btnGrad.addColorStop(1,'#38ef7d'); }
+        else { btnGrad.addColorStop(0,'#4776e6'); btnGrad.addColorStop(1,'#8e54e9'); }
+
+        ctx.fillStyle = btnGrad;
+        ctx.beginPath();
+        ctx.roundRect(btnX, cY, btnW, btnH, btnH/2);
+        ctx.fill();
+
+        ctx.font = `900 ${cSize * 3}px Arial`;
+        ctx.fillStyle = 'white';
+        ctx.shadowBlur = 4;
+        ctx.fillText(cEl.textContent, size/2, cY + btnH * 0.65);
+      }
+
+      // Download as PNG
+      const a = document.createElement('a');
+      a.href = canvas.toDataURL('image/png');
+      a.download = 'LuxClip-ad.png';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      toast('Ad downloaded ✦','success');
+    };
+
+    // Use src directly — base64 images load without CORS issues
+    img.crossOrigin = 'anonymous'; img.src = bgImg.src;
+
+  }catch(e){
+    console.error('Download error:', e);
+    toast('Download failed — please try again','error');
+  }
+}
+
+async function downloadAdImage(){
+  if(!generatedAdUrl)return;
+  try{
+    const res = await fetch(generatedAdUrl);
+    const blob = await res.blob();
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'LuxClip-ad-bg.png';
+    a.click();
+    URL.revokeObjectURL(a.href);
+  }catch(e){ window.open(generatedAdUrl,'_blank'); }
+}
+
+function showDashSection(section){
+  const main = document.getElementById('dash-section-main');
+  const imgLib = document.getElementById('dash-section-image-library');
+  const vidLib = document.getElementById('dash-section-video-library');
+  const thumbGen = document.getElementById('dash-section-thumbnail-gen');
+  const tmpl = document.getElementById('dash-section-templates');
+  if(main) main.style.display = section==='main' ? 'block' : 'none';
+  if(imgLib) imgLib.style.display = section==='image-library' ? 'block' : 'none';
+  if(vidLib) vidLib.style.display = section==='video-library' ? 'block' : 'none';
+  if(thumbGen) thumbGen.style.display = section==='thumbnail-gen' ? 'block' : 'none';
+  if(tmpl) tmpl.style.display = section==='templates' ? 'block' : 'none';
+  if(section==='image-library') renderAdLibraryPage();
+  if(section==='video-library') renderVideoLibraryPage();
+  if(section==='thumbnail-gen'){ initThumbnailSection(); }
+  if(section==='templates') renderTemplates();   const avatarStudio=document.getElementById('dash-section-avatar-studio');   if(avatarStudio) avatarStudio.style.display=section==='avatar-studio'?'block':'none';
+}
+
+function renderAdLibraryPage(){
+  const lib = JSON.parse(localStorage.getItem('lx_ad_library')||'[]');
+  const grid = document.getElementById('ad-library-grid-page');
+  const empty = document.getElementById('ad-library-empty');
+  if(!grid) return;
+
+  if(lib.length === 0){
+    grid.style.display = 'none';
+    if(empty) empty.style.display = 'block';
+    return;
+  }
+  grid.style.display = 'grid';
+  if(empty) empty.style.display = 'none';
+
+  grid.innerHTML = lib.map(item => `
+    <div style="border-radius:10px;overflow:hidden;border:1px solid var(--border);background:var(--panel)">
+      <div style="aspect-ratio:1/1;overflow:hidden;cursor:pointer" onclick="loadAdToCreator('${item.id}')">
+        <img src="${item.src}" style="width:100%;height:100%;object-fit:cover;transition:.2s" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div style="padding:8px;display:flex;gap:6px">
+        <button class="btn btn-gold btn-sm" style="flex:1;font-size:.72rem" onclick="downloadAdFromLibrary('${item.id}')">Download ↓</button>
+        <button class="btn btn-outline btn-sm" style="font-size:.72rem" onclick="loadAdToCreator('${item.id}')">Edit ✏</button>
+        <button class="btn btn-ghost btn-sm" style="font-size:.72rem" onclick="deleteAdFromLibrary('${item.id}');renderAdLibraryPage()">✕</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function loadAdToCreator(id){
+  const lib = JSON.parse(localStorage.getItem('lx_ad_library')||'[]');
+  const item = lib.find(i => String(i.id) === String(id));
+  if(!item) return;
+  // Go back to main and open ad creator
+  showDashSection('main');
+  document.querySelectorAll('.nav-item').forEach((n,i)=>{ if(i===0) n.classList.add('active'); else n.classList.remove('active'); });
+  generatedAdUrl = item.src;
+  document.getElementById('ad-bg-img').src = item.src;
+  document.getElementById('ad-composer').style.display = 'block';
+  updateAdPreview();
+  initAdDrag();
+  // Scroll to ad creator
+  setTimeout(()=>document.getElementById('ad-composer')?.scrollIntoView({behavior:'smooth',block:'center'}), 200);
+  toast('Image loaded into Ad Creator ✦','success');
+}
+
+function renderVideoLibraryPage(){
+  const grid = document.getElementById('video-grid-page');
+  if(!grid) return;
+  // Reuse same render logic
+  grid.innerHTML = document.getElementById('video-grid').innerHTML;
+}
+
+
+function saveAdToLibrary(dataUrl){
+  const lib = JSON.parse(localStorage.getItem('lx_ad_library')||'[]');
+  lib.unshift({ id: Date.now(), src: dataUrl, created: new Date().toISOString() });
+  // Keep max 20 images
+  if(lib.length > 20) lib.pop();
+  localStorage.setItem('lx_ad_library', JSON.stringify(lib));
+  renderAdLibrary();
+}
+
+function renderAdLibrary(){
+  const lib = JSON.parse(localStorage.getItem('lx_ad_library')||'[]');
+  const grid = document.getElementById('ad-library-grid');
+  const section = document.getElementById('ad-library-section');
+  if(!grid || !section) return;
+
+  if(lib.length === 0){ section.style.display='none'; return; }
+  section.style.display = 'block';
+
+  grid.innerHTML = lib.map(item => `
+    <div style="position:relative;border-radius:8px;overflow:hidden;border:1px solid var(--border);aspect-ratio:1/1;cursor:pointer" onclick="selectAdFromLibrary('${item.id}')">
+      <img src="${item.src}" style="width:100%;height:100%;object-fit:cover">
+      <div style="position:absolute;inset:0;background:rgba(0,0,0,0);transition:.2s" onmouseover="this.style.background='rgba(0,0,0,.4)'" onmouseout="this.style.background='rgba(0,0,0,0)'">
+        <div style="position:absolute;bottom:4px;right:4px;display:flex;gap:4px">
+          <button class="btn btn-gold btn-sm" style="padding:3px 8px;font-size:.65rem" onclick="event.stopPropagation();downloadAdFromLibrary('${item.id}')">↓</button>
+          <button class="btn btn-ghost btn-sm" style="padding:3px 8px;font-size:.65rem" onclick="event.stopPropagation();deleteAdFromLibrary('${item.id}')">✕</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function selectAdFromLibrary(id){
+  const lib = JSON.parse(localStorage.getItem('lx_ad_library')||'[]');
+  const item = lib.find(i => String(i.id) === String(id));
+  if(!item) return;
+  generatedAdUrl = item.src;
+  document.getElementById('ad-bg-img').src = item.src;
+  document.getElementById('ad-composer').style.display = 'block';
+  updateAdPreview();
+  initAdDrag();
+  toast('Image loaded from library ✦','success');
+}
+
+function downloadAdFromLibrary(id){
+  const lib = JSON.parse(localStorage.getItem('lx_ad_library')||'[]');
+  const item = lib.find(i => String(i.id) === String(id));
+  if(!item) return;
+  const a = document.createElement('a');
+  a.href = item.src;
+  a.download = `LuxClip-ad-${id}.png`;
+  a.click();
+  toast('Downloaded ✦','success');
+}
+
+function deleteAdFromLibrary(id){
+  let lib = JSON.parse(localStorage.getItem('lx_ad_library')||'[]');
+  lib = lib.filter(i => String(i.id) !== String(id));
+  localStorage.setItem('lx_ad_library', JSON.stringify(lib));
+  renderAdLibrary();
+}
+
+function clearAdLibrary(){
+  localStorage.removeItem('lx_ad_library');
+  renderAdLibrary();
+  toast('Library cleared','info');
+}
+
+function useAdAsVideoImage(){
+  if(!generatedAdUrl)return;
+  fetch(generatedAdUrl).then(r=>r.blob()).then(blob=>{
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      uploadedImageBase64 = e.target.result.split(',')[1];
+      uploadedImageType = blob.type || 'image/png';
+      toast('Background loaded for video generation ✦','success');
+      document.getElementById('calendar-section')?.scrollIntoView({behavior:'smooth'});
+    };
+    reader.readAsDataURL(blob);
+  });
+}
+
+// ══════════════════════════════
+// THUMBNAIL AI
+// ══════════════════════════════
+let thumbStyles = [];
+let selectedThumbStyle = null;
+let selectedThumbMood = 'excited and energetic';
+let generatedThumbUrl = '';
+
+const THUMB_LIMITS = { free: 3, pro: 50, agency: 999 };
+const BLOCKED_KEYWORDS = ['nude','naked','explicit','sexual','violence','gore','weapon','drug'];
+
+function getThumbUsage(){
+  const key = 'lx_thumb_usage_' + new Date().toISOString().slice(0,7);
+  return parseInt(localStorage.getItem(key)||'0');
+}
+function incrementThumbUsage(){
+  const key = 'lx_thumb_usage_' + new Date().toISOString().slice(0,7);
+  localStorage.setItem(key, String(getThumbUsage() + 1));
+}
+function getThumbLimit(){ return THUMB_LIMITS.free; }
+
+function updateThumbUsageUI(){
+  const used = getThumbUsage();
+  const limit = getThumbLimit();
+  const countEl = document.getElementById('thumb-usage-count');
+  const labelEl = document.getElementById('thumb-usage-label');
+  if(countEl){ countEl.textContent = used; countEl.style.color = used >= limit ? 'var(--red)' : 'var(--gold)'; }
+  if(labelEl) labelEl.textContent = '/ ' + limit + ' this month';
+}
+
+function initThumbnailSection(){
+  const profile = JSON.parse(localStorage.getItem('lx_profile')||'{}');
+  const niche = profile.niche || localStorage.getItem('lx_niche') || '';
+  const tone = profile.tone || localStorage.getItem('lx_tone') || '';
+  const mode = profile.mode || '';
+  const nicheEl = document.getElementById('thumb-niche');
+  const banner = document.getElementById('thumb-profile-banner');
+  const profileInfo = document.getElementById('thumb-profile-info');
+  const nicheRow = document.getElementById('thumb-niche-row');
+  if(niche && nicheEl){
+    nicheEl.value = niche;
+    if(banner && profileInfo){
+      banner.style.display = 'flex';
+      profileInfo.textContent = 'Niche: ' + niche + ' · Tone: ' + tone + ' · Mode: ' + mode;
+      if(nicheRow) nicheRow.style.display = 'none';
+    }
+  }
+  const moodMap = {luxury:'luxury and aspirational',bold:'excited and energetic',motivational:'confident and powerful',educational:'curious and mysterious',playful:'excited and energetic'};
+  if(tone && moodMap[tone]){
+    selectedThumbMood = moodMap[tone];
+    document.querySelectorAll('[data-thumb-mood]').forEach(b=>{ b.classList.toggle('active', b.dataset.thumbMood === selectedThumbMood); });
+  }
+  updateThumbUsageUI();
+  renderThumbLibrary();
+}
+
+function validateThumbPrompt(text){
+  const lower = text.toLowerCase();
+  for(const word of BLOCKED_KEYWORDS){ if(lower.includes(word)) return false; }
+  return true;
+}
+
+function selectThumbMood(btn){
+  document.querySelectorAll('[data-thumb-mood]').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  selectedThumbMood = btn.dataset.thumbMood;
+}
+
+async function analyseThumbnailStyles(){
+  const niche = document.getElementById('thumb-niche')?.value.trim();
+  const platform = document.getElementById('thumb-platform')?.value || 'Instagram Reels';
+  if(!niche){ toast('Enter your niche first','error'); return; }
+  if(!validateThumbPrompt(niche)){ toast('Please keep content professional and brand-safe','error'); return; }
+  const btn = document.getElementById('thumb-analyse-btn');
+  const loading = document.getElementById('thumb-analyse-loading');
+  const stylesEl = document.getElementById('thumb-styles');
+  btn.disabled = true; btn.textContent = 'Analysing…';
+  loading.style.display = 'block'; stylesEl.style.display = 'none';
+  try{
+    const res = await fetch(`${SB_URL}/functions/v1/start-video`,{method:'POST',headers:{'Content-Type':'application/json','Authorization':`Bearer ${SB_ANON}`},body:JSON.stringify({action:'analyse-thumbnails',niche,platform})});
+    const data = await res.json();
+    thumbStyles = data.styles || [];
+    if(thumbStyles.length > 0){ renderThumbStyles(); stylesEl.style.display = 'block'; toast('Styles found ✦','success'); }
+    else { toast('Could not analyse — please try again','error'); }
+  }catch(e){ toast('Analysis failed — please try again','error'); }
+  btn.disabled = false; btn.textContent = '🔍 Analyse Trending Styles';
+  loading.style.display = 'none';
+}
+
+function renderThumbStyles(){
+  const grid = document.getElementById('thumb-style-grid');
+  if(!grid) return;
+  grid.innerHTML = thumbStyles.map((s,i) => `<div class="cal-card" id="thumb-style-${i}" onclick="selectThumbStyle(${i})" style="cursor:pointer"><div style="font-size:1.6rem;margin-bottom:8px">${s.emoji||'🎯'}</div><div style="font-weight:700;font-size:.9rem;margin-bottom:6px;color:var(--text)">${s.name}</div><div style="font-size:.75rem;color:var(--muted);margin-bottom:8px;line-height:1.5">${s.description}</div><div style="font-size:.7rem;color:var(--gold)">✦ ${s.whyItWorks}</div></div>`).join('');
+}
+
+function selectThumbStyle(i){
+  document.querySelectorAll('[id^="thumb-style-"]').forEach(el=>el.classList.remove('has-video'));
+  document.getElementById(`thumb-style-${i}`)?.classList.add('has-video');
+  selectedThumbStyle = thumbStyles[i];
+  document.getElementById('thumb-selected-style-label').textContent = 'Style: ' + selectedThumbStyle.name;
+  document.getElementById('thumb-gen-section').style.display = 'block';
+  document.getElementById('thumb-gen-section').scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+async function generateThumbnail(){
+  const used = getThumbUsage();
+  const limit = getThumbLimit();
+  if(used >= limit){ toast(`You've used all ${limit} thumbnails this month — upgrade to Pro for 50/month`,'error'); setTimeout(()=>go('pricing'),2000); return; }
+  if(!selectedThumbStyle){ toast('Select a style first','error'); return; }
+  const title = document.getElementById('thumb-title')?.value.trim();
+  const subject = document.getElementById('thumb-subject')?.value.trim();
+  const niche = document.getElementById('thumb-niche')?.value.trim();
+  const platform = document.getElementById('thumb-platform')?.value;
+  const profile = JSON.parse(localStorage.getItem('lx_profile')||'{}');
+  const tone = profile.tone || localStorage.getItem('lx_tone') || 'professional';
+  if(title && !validateThumbPrompt(title)){ toast('Please keep content professional and brand-safe','error'); return; }
+  if(subject && !validateThumbPrompt(subject)){ toast('Please keep content professional and brand-safe','error'); return; }
+  const btn = document.getElementById('thumb-gen-btn');
+  const loading = document.getElementById('thumb-gen-loading');
+  const result = document.getElementById('thumb-result');
+  btn.disabled = true; btn.textContent = 'Generating…';
+  loading.style.display = 'block'; result.style.display = 'none';
+  const platformAspect = platform === 'YouTube' ? '16:9 widescreen' : '9:16 vertical portrait';
+  const thumbPrompt = `Create a professional brand-safe viral ${platform} thumbnail for the ${niche} niche. Platform format: ${platformAspect}. Brand tone: ${tone}. Style: ${selectedThumbStyle.name} — ${selectedThumbStyle.description}. Visual: ${selectedThumbStyle.visualDetails}. Subject: ${subject||'professional person relevant to the niche'}. Mood: ${selectedThumbMood}. ${title ? `Bold text overlay: "${title}" — ALL text must be fully visible and completely within the image boundaries, minimum 60px padding from all edges, no text cropped or cut off, large high contrast easy to read on mobile.` : 'Clean visual no text overlay.'} CRITICAL: Every single letter of every word must be fully readable and inside the frame. Professional quality. Brand safe. No explicit content. No real celebrity likenesses. No competitor logos.`;
+  try{
+    const res = await fetch(`${SB_URL}/functions/v1/start-video`,{method:'POST',headers:{'Content-Type':'application/json','Authorization':`Bearer ${SB_ANON}`},body:JSON.stringify({action:'image',prompt:thumbPrompt})});
+    const data = await res.json();
+    if(data.imageUrl){
+      generatedThumbUrl = data.imageUrl;
+      document.getElementById('thumb-result-img').src = data.imageUrl;
+      document.getElementById('thumb-why-works').innerHTML = `<div style="margin-bottom:8px"><strong style="color:var(--gold)">Style:</strong> ${selectedThumbStyle.name}</div><div style="margin-bottom:8px"><strong style="color:var(--gold)">Why it works:</strong> ${selectedThumbStyle.whyItWorks}</div><div style="margin-bottom:8px"><strong style="color:var(--gold)">Best for:</strong> ${selectedThumbStyle.bestFor}</div><div><strong style="color:var(--gold)">Pro tip:</strong> ${selectedThumbStyle.proTip}</div>`;
+      result.style.display = 'block';
+      incrementThumbUsage(); updateThumbUsageUI(); saveThumbnailToLibrary();
+      toast('Thumbnail generated ✦','success');
+    } else { throw new Error('No image'); }
+  }catch(e){ toast('Generation failed — please try again','error'); }
+  btn.disabled = false; btn.textContent = '✨ Generate Thumbnail';
+  loading.style.display = 'none';
+}
+
+function saveThumbnailToLibrary(){
+  if(!generatedThumbUrl) return;
+  const lib = JSON.parse(localStorage.getItem('lx_thumb_library')||'[]');
+  lib.unshift({id:Date.now(),src:generatedThumbUrl,style:selectedThumbStyle?.name||'',created:new Date().toISOString()});
+  if(lib.length > 20) lib.pop();
+  localStorage.setItem('lx_thumb_library', JSON.stringify(lib));
+  renderThumbLibrary();
+}
+
+function renderThumbLibrary(){
+  const lib = JSON.parse(localStorage.getItem('lx_thumb_library')||'[]');
+  const grid = document.getElementById('thumb-library-grid');
+  const section = document.getElementById('thumb-library-section');
+  if(!grid||!section) return;
+  if(lib.length===0){ section.style.display='none'; return; }
+  section.style.display = 'block';
+  grid.innerHTML = lib.map(item=>`<div style="border-radius:8px;overflow:hidden;border:1px solid var(--border);background:var(--panel)"><div style="aspect-ratio:16/9;overflow:hidden"><img src="${item.src}" style="width:100%;height:100%;object-fit:cover"></div><div style="padding:4px 6px;font-size:.65rem;color:var(--muted)">${item.style}</div><div style="padding:0 6px 6px;display:flex;gap:4px"><button class="btn btn-gold btn-sm" style="flex:1;font-size:.65rem" onclick="downloadThumbFromLib('${item.id}')">↓</button><button class="btn btn-ghost btn-sm" style="font-size:.65rem" onclick="deleteThumbFromLib('${item.id}')">✕</button></div></div>`).join('');
+}
+
+async function downloadThumbnail(){
+  if(!generatedThumbUrl) return;
+  const a = document.createElement('a'); a.href = generatedThumbUrl; a.download = 'LuxClip-thumbnail.png'; a.click();
+  toast('Downloaded ✦','success');
+}
+
+function downloadThumbFromLib(id){
+  const lib = JSON.parse(localStorage.getItem('lx_thumb_library')||'[]');
+  const item = lib.find(i=>String(i.id)===String(id));
+  if(!item) return;
+  const a = document.createElement('a'); a.href = item.src; a.download = `LuxClip-thumb-${id}.png`; a.click();
+}
+
+function deleteThumbFromLib(id){
+  let lib = JSON.parse(localStorage.getItem('lx_thumb_library')||'[]');
+  lib = lib.filter(i=>String(i.id)!==String(id));
+  localStorage.setItem('lx_thumb_library', JSON.stringify(lib));
+  renderThumbLibrary();
+}
+
+function clearThumbLibrary(){
+  localStorage.removeItem('lx_thumb_library');
+  renderThumbLibrary();
+}
+
+
+
+// ══════════════════════════════
+// TEMPLATE LIBRARY
+// ══════════════════════════════
+const TEMPLATES = [
+  // ── VIDEO PROMPTS ──
+  { id:'v1', type:'video', niche:'luxury', tag:'Luxury', emoji:'💎', title:'Luxury Product Reveal', desc:'Slow cinematic zoom on a premium product with golden hour lighting and bokeh background', prompt:'Slow cinematic zoom on a luxury product on marble surface, golden hour warm light, soft bokeh background, dust particles floating, ultra premium aesthetic', tone:'luxury' },
+  { id:'v2', type:'video', niche:'fashion', tag:'Fashion', emoji:'👗', title:'Fashion Lookbook', desc:'Model walking in slow motion through an elegant location with editorial lighting', prompt:'Elegant model walking in slow motion through a luxury hotel lobby, editorial fashion lighting, high fashion aesthetic, cinematic quality', tone:'luxury' },
+  { id:'v3', type:'video', niche:'fitness', tag:'Fitness', emoji:'💪', title:'Transformation Hook', desc:'High energy before and after split screen with motivational energy', prompt:'Split screen transformation video, before and after physique, gym environment, motivational energy, high contrast lighting, dynamic camera movement', tone:'bold' },
+  { id:'v4', type:'video', niche:'real estate', tag:'Real Estate', emoji:'🏡', title:'Property Showcase', desc:'Sweeping cinematic shots through a luxury property interior', prompt:'Cinematic walkthrough of a luxury home interior, smooth camera glide through spacious rooms, natural light pouring through floor to ceiling windows, premium finishes', tone:'cinematic' },
+  { id:'v5', type:'video', niche:'food', tag:'Food', emoji:'🍽', title:'Food Close-Up', desc:'Macro shots of premium food with steam and perfect lighting', prompt:'Extreme macro close-up of gourmet food dish, steam rising, perfect studio lighting, droplets of sauce, ultra appetizing, Michelin star restaurant aesthetic', tone:'luxury' },
+  { id:'v6', type:'video', niche:'skincare', tag:'Skincare', emoji:'✨', title:'Skincare Ritual', desc:'Elegant skincare routine with dewy skin and soft morning light', prompt:'Elegant skincare routine in soft morning light, close-up of dewy glowing skin, luxury product textures, slow motion serum drops, minimal aesthetic', tone:'minimal' },
+  { id:'v7', type:'video', niche:'coaching', tag:'Coaching', emoji:'🎯', title:'Authority Hook', desc:'Confident coach speaking directly to camera with bold energy', prompt:'Confident professional speaking directly to camera in modern office, bold direct eye contact, dynamic zoom, motivational energy, clean professional background', tone:'bold' },
+  { id:'v8', type:'video', niche:'ecommerce', tag:'E-Commerce', emoji:'🛒', title:'Product In Use', desc:'Lifestyle shot of product being used naturally in daily life', prompt:'Person naturally using a premium product in aspirational lifestyle setting, candid authentic moment, warm natural lighting, modern home environment', tone:'playful' },
+
+  // ── CONTENT PLANS ──
+  { id:'p1', type:'plan', niche:'luxury fashion', tag:'Fashion', emoji:'👗', title:'Luxury Fashion Week', desc:'7 days of fashion content — lookbooks, styling tips, behind the scenes and product reveals', plan:{ niche:'luxury fashion', goal:'followers', tone:'luxury', audience:'fashion enthusiasts and luxury consumers' } },
+  { id:'p2', type:'plan', niche:'fitness coaching', tag:'Fitness', emoji:'💪', title:'Fitness Coach Week', desc:'7 days of fitness content — workouts, nutrition tips, transformations and motivation', plan:{ niche:'fitness coaching', goal:'clients', tone:'motivational', audience:'people who want to lose weight and get fit' } },
+  { id:'p3', type:'plan', niche:'real estate', tag:'Real Estate', emoji:'🏡', title:'Real Estate Agent Week', desc:'7 days of property content — tours, tips, market insights and lifestyle', plan:{ niche:'luxury real estate', goal:'clients', tone:'educational', audience:'home buyers and property investors' } },
+  { id:'p4', type:'plan', niche:'restaurant', tag:'Food', emoji:'🍽', title:'Restaurant Launch Week', desc:'7 days of food and dining content — dishes, kitchen BTS, chef stories and ambience', plan:{ niche:'restaurant and dining', goal:'footfall', tone:'playful', audience:'local foodies and dining enthusiasts' } },
+  { id:'p5', type:'plan', niche:'skincare brand', tag:'Skincare', emoji:'✨', title:'Skincare Brand Week', desc:'7 days of beauty content — routines, ingredients, before/after and tips', plan:{ niche:'skincare and beauty', goal:'sales', tone:'educational', audience:'skincare enthusiasts aged 25-45' } },
+  { id:'p6', type:'plan', niche:'business coaching', tag:'Business', emoji:'🎯', title:'Business Coach Week', desc:'7 days of business content — mindset, strategy, wins and client results', plan:{ niche:'business and entrepreneurship coaching', goal:'clients', tone:'bold', audience:'entrepreneurs and small business owners' } },
+
+  // ── CAPTIONS ──
+  { id:'c1', type:'caption', niche:'all', tag:'Hook', emoji:'🔥', title:'The Curiosity Hook', desc:'Starts with a question that makes people stop scrolling', caption:'Wait — are you making this mistake?\n\n[Your value/insight here]\n\nSave this before you scroll. 👇\n\n#[niche] #[topic] #content' },
+  { id:'c2', type:'caption', niche:'all', tag:'Story', emoji:'📖', title:'The Transformation Story', desc:'Before and after narrative that builds emotional connection', caption:'6 months ago I was [struggle].\n\nToday I [result].\n\nHere\'s exactly what changed 👇\n\n[Your key insight]\n\nDouble tap if this resonates.\n\n#[niche] #transformation' },
+  { id:'c3', type:'caption', niche:'all', tag:'Authority', emoji:'👑', title:'The Authority Statement', desc:'Positions you as the expert in your niche', caption:'After [timeframe] of [niche], I\'ve learned this:\n\n[Bold statement or insight]\n\nMost people don\'t know this yet.\n\nSave this post. 🔖\n\n#[niche] #expert #[topic]' },
+  { id:'c4', type:'caption', niche:'all', tag:'Luxury', emoji:'💎', title:'The Luxury Reveal', desc:'Aspirational and exclusive tone for premium brands', caption:'Not everything is for everyone.\n\n[Product/service] was designed for those who understand [value].\n\nBecause [luxury reason].\n\nLink in bio.\n\n#luxury #[brand] #exclusive' },
+  { id:'c5', type:'caption', niche:'all', tag:'Education', emoji:'🎓', title:'The Value Drop', desc:'Pure value that makes followers save and share', caption:'[Number] things nobody tells you about [topic]:\n\n1. [Insight]\n2. [Insight]\n3. [Insight]\n\nWhich one surprised you most?\n\n#[niche] #tips #[topic]' },
+  { id:'c6', type:'caption', niche:'all', tag:'CTA', emoji:'📣', title:'The Direct CTA', desc:'Clear call to action that drives conversions', caption:'If you\'re serious about [goal], this is for you.\n\n[What you offer] → [Result they get]\n\nDM me "[keyword]" to get started.\n\n#[niche] #[result] #coaching' },
+
+  // ── AD TEMPLATES ──
+  { id:'a1', type:'ad', niche:'all', tag:'Launch', emoji:'🚀', title:'New Product Launch', desc:'High energy product launch ad with urgency', scene:'minimal clean white background product photography', style:'bright clean minimalist white background', headline:'INTRODUCING [PRODUCT NAME]', cta:'SHOP NOW' },
+  { id:'a2', type:'ad', niche:'all', tag:'Sale', emoji:'💰', title:'Flash Sale Ad', desc:'Bold sale announcement with strong urgency', scene:'luxury lifestyle aspirational', style:'high contrast dark moody luxury aesthetic', headline:'LIMITED TIME OFFER', cta:'CLAIM YOUR DEAL' },
+  { id:'a3', type:'ad', niche:'coaching', tag:'Coaching', emoji:'🎯', title:'Free Consultation Ad', desc:'Professional coaching offer with clear value prop', scene:'home office professional', style:'ultra realistic warm lighting professional photography', headline:'GET YOUR FREE STRATEGY CALL', cta:'BOOK NOW — FREE' },
+  { id:'a4', type:'ad', niche:'fitness', tag:'Fitness', emoji:'💪', title:'Transformation Ad', desc:'Before/after style with bold motivational copy', scene:'fitness gym workout', style:'bold vibrant colors energetic dynamic', headline:'TRANSFORM IN 90 DAYS', cta:'START TODAY' },
+];
+
+let currentTemplateFilter = 'all';
+
+function filterTemplates(type, btn){
+  document.querySelectorAll('#dash-section-templates .filter-pill').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  currentTemplateFilter = type;
+  renderTemplates();
+}
+
+function renderTemplates(){
+  const grid = document.getElementById('template-grid');
+  if(!grid) return;
+  const filtered = currentTemplateFilter === 'all' ? TEMPLATES : TEMPLATES.filter(t=>t.type===currentTemplateFilter);
+
+  grid.innerHTML = filtered.map(t => `
+    <div style="background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:20px;display:flex;flex-direction:column;gap:10px;transition:.18s" onmouseover="this.style.borderColor='var(--gold3)'" onmouseout="this.style.borderColor='var(--border)'">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div style="font-size:1.8rem">${t.emoji}</div>
+        <div>
+          <div style="font-weight:700;font-size:.9rem;color:var(--text)">${t.title}</div>
+          <span style="font-size:.68rem;padding:2px 8px;border-radius:20px;background:rgba(212,168,83,.08);border:1px solid var(--gold3);color:var(--gold)">${t.tag}</span>
+        </div>
+      </div>
+      <div style="font-size:.8rem;color:var(--muted);line-height:1.5;flex:1">${t.desc}</div>
+      ${t.type==='caption' ? `<div style="font-size:.75rem;color:var(--text);background:var(--noir3);border:1px solid var(--border);border-radius:6px;padding:10px;line-height:1.6;white-space:pre-line">${t.caption.substring(0,120)}…</div>` : ''}
+      ${t.type==='video' ? `<div style="font-size:.72rem;color:var(--gold);font-style:italic;background:rgba(212,168,83,.04);border-left:2px solid var(--gold3);padding:8px 10px;border-radius:0 4px 4px 0">🎬 ${t.prompt.substring(0,80)}…</div>` : ''}
+      <button class="btn btn-gold btn-sm" style="width:100%;margin-top:4px" onclick="useTemplate('${t.id}')">Use Template →</button>
+    </div>
+  `).join('');
+}
+
+function useTemplate(id){
+  const t = TEMPLATES.find(t=>t.id===id);
+  if(!t) return;
+
+  if(t.type === 'video'){
+    // Go to dashboard, open quick generate with prompt filled
+    showDashSection('main');
+    document.querySelectorAll('#page-dashboard .nav-item').forEach((n,i)=>{ if(i===0) n.classList.add('active'); else n.classList.remove('active'); });
+    // Find first calendar day and open it, or scroll to generate section
+    const firstDay = contentPlan[0];
+    if(firstDay){
+      openCalDay(1);
+      setTimeout(()=>{
+        const promptEl = document.getElementById('quick-prompt');
+        if(promptEl) promptEl.value = t.prompt;
+        const toneBtn = document.querySelector(`[data-tone="${t.tone}"]`);
+        if(toneBtn){ selectTone(toneBtn); }
+      }, 300);
+    }
+    toast(`Video prompt loaded: "${t.title}" ✦`,'success');
+  }
+
+  else if(t.type === 'plan'){
+    // Pre-fill onboarding with template values and open it
+    showDashSection('main');
+    showOnboarding();
+    setTimeout(()=>{
+      // Skip to screen 2 with values pre-filled
+      goObScreen(2);
+      const nicheEl = document.getElementById('ob-niche');
+      const audienceEl = document.getElementById('ob-audience');
+      if(nicheEl) nicheEl.value = t.plan.niche;
+      if(audienceEl) audienceEl.value = t.plan.audience;
+      selectedGoal = t.plan.goal;
+      selectedObTone = t.plan.tone;
+      // Highlight the correct tone button
+      document.querySelectorAll('[data-tone]').forEach(b=>b.classList.toggle('active', b.dataset.tone===t.plan.tone));
+    }, 200);
+    toast(`Content plan template loaded: "${t.title}" ✦`,'success');
+  }
+
+  else if(t.type === 'caption'){
+    // Copy caption to clipboard
+    navigator.clipboard.writeText(t.caption).then(()=>{
+      toast(`Caption copied to clipboard ✦`,'success');
+    });
+  }
+
+  else if(t.type === 'ad'){
+    // Go to main, fill ad creator
+    showDashSection('main');
+    document.querySelectorAll('#page-dashboard .nav-item').forEach((n,i)=>{ if(i===0) n.classList.add('active'); else n.classList.remove('active'); });
+    setTimeout(()=>{
+      const sceneEl = document.getElementById('ad-scene');
+      const styleEl = document.getElementById('ad-style');
+      const headlineEl = document.getElementById('ad-headline');
+      const ctaEl = document.getElementById('ad-cta');
+      if(sceneEl) sceneEl.value = t.scene;
+      if(styleEl) styleEl.value = t.style;
+      if(headlineEl) headlineEl.value = t.headline;
+      if(ctaEl) ctaEl.value = t.cta;
+      updateAdPreview();
+      document.querySelector('.create-section')?.scrollIntoView({behavior:'smooth'});
+    }, 200);
+    toast(`Ad template loaded: "${t.title}" — generate the background to preview ✦`,'success');
+  }
+}
+
+
+const ADMIN_PASSWORD = 'LuxClip-admin-2026';
+let adminAuthenticated = false;
+let allAdminUsers = [];
+let allAdminVideos = [];
+
+function checkAdminPassword(){
+  const pw = document.getElementById('admin-password-input')?.value;
+  if(pw === ADMIN_PASSWORD){
+    adminAuthenticated = true;
+    document.getElementById('admin-gate').style.display = 'none';
+    document.getElementById('admin-panel').style.display = 'block';
+    loadAdminDashboard();
+  } else {
+    document.getElementById('admin-gate-error').style.display = 'block';
+  }
+}
+
+function adminLogout(){
+  adminAuthenticated = false;
+  document.getElementById('admin-gate').style.display = 'flex';
+  document.getElementById('admin-panel').style.display = 'none';
+  document.getElementById('admin-password-input').value = '';
+  document.getElementById('admin-gate-error').style.display = 'none';
+}
+
+async function loadAdminDashboard(){
+  if(!adminAuthenticated) return;
+  if(!sb) return;
+  try{
+    const { data: videoUsers } = await sb.from('videos').select('user_id, created_at').order('created_at',{ascending:false});
+    const { data: videos } = await sb.from('videos').select('*').order('created_at',{ascending:false}).limit(50);
+    const { data: plans } = await sb.from('content_plans').select('user_id, created_at').order('created_at',{ascending:false});
+    allAdminVideos = videos || [];
+    const userMap = {};
+    (videoUsers||[]).forEach(v => {
+      if(!userMap[v.user_id]) userMap[v.user_id] = {user_id:v.user_id,videos:0,plans:0,last_active:v.created_at,joined:v.created_at};
+      userMap[v.user_id].videos++;
+      if(v.created_at > userMap[v.user_id].last_active) userMap[v.user_id].last_active = v.created_at;
+    });
+    (plans||[]).forEach(p => {
+      if(!userMap[p.user_id]) userMap[p.user_id] = {user_id:p.user_id,videos:0,plans:0,last_active:p.created_at,joined:p.created_at};
+      userMap[p.user_id].plans++;
+    });
+    allAdminUsers = Object.values(userMap).map(u => ({
+      ...u,
+      email: u.user_id === currentUser?.id ? currentUser.email : u.user_id.slice(0,8)+'…',
+      plan: 'free'
+    }));
+    updateAdminStats(allAdminUsers, allAdminVideos, plans||[]);
+    renderAdminUsers(allAdminUsers);
+    renderAdminVideos(allAdminVideos);
+  }catch(e){ console.error('Admin load error:',e); toast('Failed to load admin data','error'); }
+}
+
+function updateAdminStats(users, videos, plans){
+  const oneWeekAgo = new Date(Date.now() - 7*24*60*60*1000).toISOString();
+  const newUsers = users.filter(u => u.joined > oneWeekAgo).length;
+  const proUsers = users.filter(u => u.plan === 'pro').length;
+  document.getElementById('admin-stat-users').textContent = users.length;
+  document.getElementById('admin-stat-videos').textContent = videos.length;
+  document.getElementById('admin-stat-new').textContent = newUsers;
+  document.getElementById('admin-stat-plans').textContent = plans.length;
+  document.getElementById('admin-stat-pro').textContent = proUsers;
+  document.getElementById('admin-stat-mrr').textContent = '$'+(proUsers*29);
+  document.getElementById('admin-user-count').textContent = users.length + ' users';
+}
+
+function renderAdminUsers(users){
+  const tbody = document.getElementById('admin-users-tbody');
+  if(!tbody) return;
+  if(users.length === 0){ tbody.innerHTML = `<tr><td colspan="7" style="padding:32px;text-align:center;color:var(--muted)">No users found</td></tr>`; return; }
+  tbody.innerHTML = users.map(u => `
+    <tr style="border-bottom:1px solid var(--border)" onmouseover="this.style.background='rgba(255,255,255,.02)'" onmouseout="this.style.background='transparent'">
+      <td style="padding:12px 20px;font-size:.85rem">${u.email||u.user_id.slice(0,12)+'…'}</td>
+      <td style="padding:12px 16px;font-size:.8rem;color:var(--muted)">${u.joined?new Date(u.joined).toLocaleDateString():'—'}</td>
+      <td style="padding:12px 16px"><span style="font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:20px;${u.plan==='pro'?'background:rgba(56,239,125,.1);color:#38ef7d;border:1px solid rgba(56,239,125,.3)':'background:rgba(255,255,255,.05);color:var(--muted);border:1px solid var(--border)'}">${(u.plan||'free').toUpperCase()}</span></td>
+      <td style="padding:12px 16px;text-align:center;font-size:.85rem">${u.videos||0}</td>
+      <td style="padding:12px 16px;text-align:center;font-size:.85rem">${u.plans||0}</td>
+      <td style="padding:12px 16px;font-size:.8rem;color:var(--muted)">${u.last_active?new Date(u.last_active).toLocaleDateString():'—'}</td>
+      <td style="padding:12px 16px;text-align:center">
+        <div style="display:flex;gap:6px;justify-content:center">
+          <button class="btn btn-outline btn-sm" style="font-size:.7rem;padding:4px 10px" onclick="upgradeUser('${u.user_id}')">↑ Upgrade</button>
+          <button class="btn btn-ghost btn-sm" style="font-size:.7rem;padding:4px 10px;color:var(--red)" onclick="deleteUser('${u.user_id}')">Delete</button>
+        </div>
+      </td>
+    </tr>`).join('');
+}
+
+function renderAdminVideos(videos){
+  const tbody = document.getElementById('admin-videos-tbody');
+  if(!tbody) return;
+  if(videos.length === 0){ tbody.innerHTML = `<tr><td colspan="5" style="padding:32px;text-align:center;color:var(--muted)">No videos yet</td></tr>`; return; }
+  tbody.innerHTML = videos.slice(0,20).map(v => `
+    <tr style="border-bottom:1px solid var(--border)" onmouseover="this.style.background='rgba(255,255,255,.02)'" onmouseout="this.style.background='transparent'">
+      <td style="padding:12px 20px;font-size:.8rem;color:var(--muted)">${v.user_id?.slice(0,8)||'—'}…</td>
+      <td style="padding:12px 16px;font-size:.82rem;max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${v.prompt||'—'}</td>
+      <td style="padding:12px 16px"><span style="font-size:.72rem;padding:3px 8px;border-radius:20px;${v.status==='done'?'background:rgba(56,239,125,.1);color:#38ef7d':'background:rgba(212,168,83,.1);color:var(--gold)'}">${v.status||'pending'}</span></td>
+      <td style="padding:12px 16px;font-size:.8rem;color:var(--muted)">${v.created_at?new Date(v.created_at).toLocaleDateString():'—'}</td>
+      <td style="padding:12px 16px;text-align:center">
+        <div style="display:flex;gap:6px;justify-content:center">
+          ${v.video_url&&!v.video_url.includes('commondatastorage')?`<a href="${v.video_url}" target="_blank" class="btn btn-outline btn-sm" style="font-size:.7rem;padding:4px 10px">View</a>`:''}
+          <button class="btn btn-ghost btn-sm" style="font-size:.7rem;padding:4px 10px;color:var(--red)" onclick="deleteAdminVideo('${v.id}')">Delete</button>
+        </div>
+      </td>
+    </tr>`).join('');
+}
+
+function filterAdminUsers(){
+  const search = document.getElementById('admin-search')?.value.toLowerCase()||'';
+  const plan = document.getElementById('admin-filter-plan')?.value||'all';
+  const filtered = allAdminUsers.filter(u => {
+    const matchEmail = !search||(u.email||u.user_id).toLowerCase().includes(search);
+    const matchPlan = plan==='all'||u.plan===plan;
+    return matchEmail && matchPlan;
+  });
+  renderAdminUsers(filtered);
+  document.getElementById('admin-user-count').textContent = filtered.length + ' users';
+}
+
+async function upgradeUser(userId){
+  toast('Stripe integration coming soon — upgrade manually in Supabase for now','info');
+}
+
+async function deleteAdminVideo(videoId){
+  if(!confirm('Delete this video? This cannot be undone.')) return;
+  try{
+    await sb.from('videos').delete().eq('id',videoId);
+    allAdminVideos = allAdminVideos.filter(v=>v.id!==videoId);
+    renderAdminVideos(allAdminVideos);
+    toast('Video deleted','success');
+  }catch(e){ toast('Failed to delete','error'); }
+}
+
+function deleteUser(userId){
+  toast('Go to Supabase → Authentication → Users to delete a user account','info');
+}
+
+function exportUsersCSV(){
+  const headers = ['Email/ID','Joined','Plan','Videos','Plans','Last Active'];
+  const rows = allAdminUsers.map(u=>[u.email||u.user_id,u.joined?new Date(u.joined).toLocaleDateString():'',u.plan||'free',u.videos||0,u.plans||0,u.last_active?new Date(u.last_active).toLocaleDateString():'']);
+  const csv = [headers,...rows].map(r=>r.join(',')).join('\n');
+  const a = document.createElement('a');
+  a.href = 'data:text/csv;charset=utf-8,'+encodeURIComponent(csv);
+  a.download = 'LuxClip-users-'+new Date().toISOString().slice(0,10)+'.csv';
+  a.click();
+  toast('CSV exported ✦','success');
+}
+
+if(window.location.hash==='#admin'){ setTimeout(()=>go('admin'),500); }
+
+// ══════════════════════════════
+// IMAGE UPLOAD
+// ══════════════════════════════
+function handleImageUpload(input){
+  const file=input.files[0];
+  if(!file)return;
+  if(file.size>10*1024*1024){toast('Image too large — max 10MB','error');return;}
+  const reader=new FileReader();
+  reader.onload=(e)=>{
+    const result=e.target.result;
+    uploadedImageBase64=result.split(',')[1];
+    uploadedImageType=file.type;
+
+    // Check which upload area triggered this
+    const isQuick=input.id==='quick-image-input';
+    const prefix=isQuick?'quick-':'';
+
+    const placeholder=document.getElementById(prefix+'upload-placeholder');
+    const preview=document.getElementById(prefix+'upload-preview');
+    const img=document.getElementById(prefix+'upload-img');
+    const area=document.getElementById(prefix+'upload-area');
+
+    if(placeholder)placeholder.style.display='none';
+    if(preview)preview.style.display='block';
+    if(img)img.src=result;
+    if(area)area.classList.add('has-image');
+
+    // Also update filename if exists
+    const fn=document.getElementById('upload-filename');
+    if(fn)fn.textContent=file.name;
+
+    toast('Product photo ready ✦','success');
+  };
+  reader.readAsDataURL(file);
+}
+
+function clearImage(e){
+  e.stopPropagation();
+  uploadedImageBase64='';
+  uploadedImageType='';
+  document.getElementById('upload-placeholder').style.display='block';
+  document.getElementById('upload-preview').style.display='none';
+  document.getElementById('upload-area').classList.remove('has-image');
+  document.getElementById('product-image-input').value='';
+}
+
+document.querySelectorAll('.tone-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    if(btn.dataset.tone){
+      document.querySelectorAll('.tone-btn[data-tone]').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      selectedTone=btn.dataset.tone;
+    }
+  });
+});
+
+function setDuration(dur,el){
+  selectedDuration=dur;
+  document.querySelectorAll('[data-dur]').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function setRatio(ratio,el){
+  selectedRatio=ratio;
+  document.querySelectorAll('[data-ratio]').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// ══════════════════════════════
+// GENERATE
+// ══════════════════════════════
+async function handleGenerate(){
+  const prompt=document.getElementById('dash-prompt').value.trim();
+  if(!prompt){toast('Enter a video prompt first','error');return}
+  if(generating){toast('Already generating — please wait','info');return}
+  if(videos.length>=MAX_FREE){showUpgradeModal();return}
+
+  generating=true;
+  const btn=document.getElementById('gen-btn');
+  btn.disabled=true;
+  btn.textContent='Generating…';
+
+  const video={
+    id:Date.now(),
+    prompt,tone:selectedTone,
+    video_url:SAMPLE_VIDEO,caption:'',status:'pending',
+    task_id:'',
+    created:new Date().toISOString(),
+  };
+  videos.unshift(video);renderGrid();updateStats();
+
+  try{
+    const startRes=await fetch(`${SB_URL}/functions/v1/start-video`,{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Authorization':`Bearer ${SB_ANON}`},
+      body:JSON.stringify({
+        userId:currentUser?.id||'anonymous',
+        scenes:[{index:1,text:prompt,visual:prompt,duration:6}],
+        style:selectedTone||'luxury',
+        platform:'instagram_reels',
+        niche:localStorage.getItem('lx_niche')||'luxury',
+        contentType:'reel',
+        tone:selectedTone||'luxury',
+        hook:prompt.slice(0,80),
+      }),
+    });
+    const startData=await startRes.json();
+    console.log('Start response:', JSON.stringify(startData));
+    video.caption=fallbackCaption();
+    video.task_id=startData.taskId||startData.requestId||'';
+
+    await saveVideo(video);
+    renderGrid();
+    btn.disabled=false;btn.textContent='Generate Video';
+    generating=false;
+    document.getElementById('dash-prompt').value='';
+
+    console.log('task_id check:',video.task_id);
+if(video.task_id){
+      toast('Video generating — ready in ~2 mins ✦','info');
+      watchVideoJob(video);
+    } else {
+      toast('Could not start video — please try again','error');
+    }
+  }catch(e){
+    console.warn('Start failed',e);
+    video.caption=fallbackCaption();
+    video.status='done';
+    await saveVideo(video);
+    renderGrid();updateStats();
+    btn.disabled=false;btn.textContent='Generate Video';
+    generating=false;
+    document.getElementById('dash-prompt').value='';
+  }
+}
+
+// ── Video job status tracking ──────────────────
+// Two-layer approach:
+// 1. Supabase realtime subscription — instant UI update when DB changes
+// 2. process-video-job polling fallback — drives the actual status update
+// Active subscriptions stored here so we can unsubscribe when done.
+const activeJobSubscriptions={};
+
+async function watchVideoJob(video){
+  const requestId=video.task_id;
+  if(!requestId||!sb)return;
+  console.log('Watching job:',requestId);
+
+  // ── Layer 1: Realtime subscription ──
+  // Listens for DB row changes on this specific requestId.
+  // When process-video-job updates the row, this fires instantly.
+  const channel=sb.channel('job-'+requestId)
+    .on('postgres_changes',{
+      event:'UPDATE',
+      schema:'public',
+      table:'video_jobs',
+      filter:`request_id=eq.${requestId}`
+    },async(payload)=>{
+      console.log('Realtime update:',payload.new.status);
+      const row=payload.new;
+      if(row.status==='completed'&&row.video_url){
+        video.video_url=row.video_url;
+        video.status='done';
+        await saveVideo(video);
+        const idx=videos.findIndex(v=>String(v.id)===String(video.id));
+        if(idx>=0)videos[idx]=video;
+        renderGrid();updateStats();
+        toast('Your video is ready! ✦','success');
+        // Unsubscribe — job is done
+        _cleanupJobSubscription(requestId);
+      }
+      if(row.status==='failed'){
+        video.status='done';
+        await saveVideo(video);
+        const idx=videos.findIndex(v=>String(v.id)===String(video.id));
+        if(idx>=0)videos[idx]=video;
+        renderGrid();
+        toast('Video generation failed — please try again','error');
+        _cleanupJobSubscription(requestId);
+      }
+    })
+    .subscribe();
+
+  activeJobSubscriptions[requestId]=channel;
+
+  // ── Layer 2: process-video-job polling ──
+  // Calls the Edge Function every 5s to poll fal.ai and update the DB.
+  // The realtime subscription above picks up those DB updates instantly.
+  // Stops automatically when status reaches completed or failed.
+  let attempts=0;
+  const maxAttempts=36; // 36 × 5s = 3 minutes max
+  const poll=setInterval(async()=>{
+    attempts++;
+    try{
+      const res=await fetch(`${SB_URL}/functions/v1/process-video-job`,{
+        method:'POST',
+        headers:{'Content-Type':'application/json','Authorization':`Bearer ${SB_ANON}`},
+        body:JSON.stringify({requestId}),
+      });
+      const data=await res.json();
+      console.log(`Job poll ${attempts}/${maxAttempts}:`,data.status);
+      // Terminal states — stop polling (realtime already handled UI)
+      if(data.status==='completed'||data.status==='failed'||attempts>=maxAttempts){
+        clearInterval(poll);
+        if(attempts>=maxAttempts&&data.status!=='completed'){
+          video.status='done';
+          await saveVideo(video);
+          renderGrid();
+          _cleanupJobSubscription(requestId);
+        }
+      }
+    }catch(e){
+      console.warn('process-video-job poll error:',e);
+    }
+  },5000);
+
+  // Store interval ref for cleanup
+  activeJobSubscriptions[requestId+'_interval']=poll;
+}
+
+function _cleanupJobSubscription(requestId){
+  const channel=activeJobSubscriptions[requestId];
+  if(channel){sb.removeChannel(channel);delete activeJobSubscriptions[requestId];}
+  const interval=activeJobSubscriptions[requestId+'_interval'];
+  if(interval){clearInterval(interval);delete activeJobSubscriptions[requestId+'_interval'];}
+}
+
+function fallbackCaption(){
+  const caps=[
+    'Crafted with purpose. Worn with intention. ✦ #LuxClip #Aesthetic #ContentCreator',
+    'Every detail speaks before you do. #Luxury #Brand #Elevated',
+    'Some things are worth the silence. #Minimal #Refined #LuxuryLifestyle',
+    'Move differently. Create differently. ✦ #Bold #Creative #Visual',
+  ];
+  return caps[Math.floor(Math.random()*caps.length)];
+}
+
+// ══════════════════════════════
+// RENDER
+// ══════════════════════════════
+function renderGrid(){
+  const grid=document.getElementById('video-grid');
+  if(!grid)return;
+  const filtered=currentFilter==='all'?videos:videos.filter(v=>v.status===currentFilter);
+  updateUsageBar();
+  updateStats();
+  if(filtered.length===0){
+    grid.innerHTML=`
+      <div class="library-empty">
+        <div class="empty-icon-big">◈</div>
+        <div class="empty-h">${currentFilter==='all'?'No videos yet':'No '+currentFilter+' videos'}</div>
+        <div class="empty-p">${currentFilter==='all'?'Generate your first reel above':''}</div>
+      </div>`;
+    return;
+  }
+  grid.innerHTML=filtered.map((v,i)=>{
+    const isDone=v.status==='done';
+    const isPending=v.status==='pending'||v.status==='processing';
+    const isFailed=v.status==='failed';
+    const isLoading=!v.id||v._skeleton;
+
+    // Thumb content
+    let thumbContent='';
+    if(isLoading){
+      thumbContent=`<div class="card-thumb-skeleton"></div>`;
+    } else if(isDone&&v.video_url){
+      thumbContent=`
+        <video src="${v.video_url}" muted loop playsinline preload="metadata"
+          onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;"></video>
+        <div class="card-play-overlay">
+          <div class="play-circle" onclick="previewPost('${v.id}')">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+              <path d="M3.5 2.5l7 4.5-7 4.5V2.5z" fill="#0a0800"/>
+            </svg>
+          </div>
+        </div>
+        <a class="fal-credit" href="https://fal.ai" target="_blank">Powered by fal.ai</a>`;
+    } else if(isFailed){
+      thumbContent=`
+        <div class="card-thumb-bg"></div>
+        <div class="failed-overlay">
+          <div class="failed-icon">✕</div>
+          <div class="failed-label">Generation failed</div>
+        </div>`;
+    } else {
+      thumbContent=`
+        <div class="card-thumb-bg"></div>
+        <div class="gen-overlay">
+          <div class="spin-ring"></div>
+          <div class="gen-label">AI generating…</div>
+          <div class="gen-sublabel">30 – 60 seconds</div>
+        </div>`;
+    }
+
+    // Badge
+    let badgeClass='badge-pending', badgeLabel='Pending';
+    if(isDone){ badgeClass='badge-done'; badgeLabel='✦ Done'; }
+    if(isFailed){ badgeClass='badge-failed'; badgeLabel='Failed'; }
+
+    // Actions
+    let actions='';
+    if(isLoading){
+      actions=`
+        <div class="card-skeleton-line" style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border)"></div>`;
+    } else if(isDone){
+      actions=`
+        <button class="card-act-btn" onclick="previewPost('${v.id}')">Preview 👁</button>
+        <button class="card-act-btn" onclick="copyCaption('${v.id}')">Copy ⧉</button>
+        <button class="card-act-btn" onclick="downloadVideo('${v.id}','${v.video_url}')">↓</button>
+        <button class="card-act-btn delete" onclick="deleteVideo('${v.id}')">✕</button>`;
+    } else if(isFailed){
+      actions=`
+        <button class="card-act-btn" style="flex:3" onclick="deleteVideo('${v.id}')">Remove</button>
+        <button class="card-act-btn delete" onclick="deleteVideo('${v.id}')">✕</button>`;
+    } else {
+      actions=`
+        <button class="card-act-btn" disabled style="flex:1;opacity:.4">Generating…</button>
+        <button class="card-act-btn delete" onclick="deleteVideo('${v.id}')">✕</button>`;
+    }
+
+    return `
+    <div class="video-card" style="animation-delay:${i*.04}s" id="vc-${v.id}">
+      <div class="card-thumb">
+        ${thumbContent}
+        ${!isLoading?`<div class="card-badge ${badgeClass}"><div class="card-badge-dot"></div>${badgeLabel}</div>`:''}
+      </div>
+      <div class="card-body">
+        ${isLoading
+          ?`<div class="card-skeleton-line"></div><div class="card-skeleton-line short"></div>`
+          :`<div class="card-prompt-text" title="${esc(v.prompt)}">${esc(v.prompt)}</div>
+            <div class="card-caption-text ${isPending?'loading-pulse':''}">${isDone?esc(v.caption):''}</div>`
+        }
+        <div class="card-actions-row">${actions}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function updateStats(){
+  const done=videos.filter(v=>v.status==='done').length;
+  const pending=videos.filter(v=>v.status==='pending'||v.status==='processing').length;
+  const failed=videos.filter(v=>v.status==='failed').length;
+  const total=videos.length;
+  // Header stats (existing)
+  const t=document.getElementById('stat-total');
+  const d=document.getElementById('stat-done');
+  if(t)t.textContent=total;
+  if(d)d.textContent=done;
+  // New mini stat cards
+  const sp=document.getElementById('stat-pending');
+  const sf=document.getElementById('stat-failed-count');
+  if(sp)sp.textContent=pending;
+  if(sf)sf.textContent=failed;
+  // Filter pill counts
+  const fall=document.getElementById('fc-all');
+  const fdone=document.getElementById('fc-done');
+  const fpend=document.getElementById('fc-pending');
+  if(fall)fall.textContent=total;
+  if(fdone)fdone.textContent=done;
+  if(fpend)fpend.textContent=pending;
+  updateUsageBar();
+}
+function updateUsageBar(){
+  const fill=document.getElementById('usage-fill');
+  const txt=document.getElementById('usage-text');
+  const pct=Math.min(100,(videos.length/MAX_FREE)*100);
+  if(fill)fill.style.width=pct+'%';
+  if(txt)txt.textContent=`${videos.length} / ${MAX_FREE} used`;
+}
+function filterVideos(f,el){
+  currentFilter=f;
+  document.querySelectorAll('.filter-pill').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  renderGrid();
+}
+
+// ══════════════════════════════
+// ACTIONS
+// ══════════════════════════════
+let previewVideoId = '';
+
+function previewPost(id){
+  const v=videos.find(v=>String(v.id)===String(id));
+  if(!v)return;
+  previewVideoId=id;
+
+  // Set video
+  const videoEl=document.getElementById('preview-video');
+  const placeholder=document.getElementById('preview-placeholder');
+  if(v.video_url&&!v.video_url.includes('commondatastorage')){
+    videoEl.src=v.video_url;
+    videoEl.style.display='block';
+    placeholder.style.display='none';
+    videoEl.play().catch(()=>{});
+  } else {
+    videoEl.style.display='none';
+    placeholder.style.display='flex';
+  }
+
+  // Set caption
+  const caption=v.caption||'';
+  document.getElementById('preview-caption-text').textContent=' '+caption;
+
+  // Set username from current user email
+  const username=currentUser?.email?.split('@')[0]?.replace(/[._]/g,'')?.toLowerCase()||'yourbrand';
+  document.getElementById('preview-username').textContent=username;
+  document.getElementById('preview-caption-user').textContent=username;
+  document.getElementById('preview-avatar').textContent=username.substring(0,2).toUpperCase();
+
+  // Random likes
+  const likes=(Math.floor(Math.random()*3000)+500).toLocaleString();
+  document.getElementById('preview-likes').textContent='❤️ '+likes+' likes';
+
+  // Heart animation
+  const heart=document.getElementById('preview-heart');
+  heart.textContent='🤍';
+  heart.onclick=()=>{heart.textContent=heart.textContent==='🤍'?'❤️':'🤍'};
+
+  // Show modal
+  const modal=document.getElementById('preview-modal');
+  modal.style.display='flex';
+}
+
+function closePreview(){
+  const modal=document.getElementById('preview-modal');
+  modal.style.display='none';
+  const videoEl=document.getElementById('preview-video');
+  videoEl.pause();
+  videoEl.src='';
+}
+
+function copyCaptionFromPreview(){
+  const v=videos.find(v=>String(v.id)===String(previewVideoId));
+  if(!v?.caption)return;
+  navigator.clipboard.writeText(v.caption).then(()=>toast('Caption copied! ✦','success'));
+}
+
+async function downloadVideo(id, url){
+  if(!url||url.includes('commondatastorage')){toast('No video to download yet','error');return;}
+  try{
+    toast('Downloading…','info');
+    const res=await fetch(url);
+    const blob=await res.blob();
+    const a=document.createElement('a');
+    a.href=URL.createObjectURL(blob);
+    a.download=`LuxClip-${id}.mp4`;
+    a.click();
+    URL.revokeObjectURL(a.href);
+    toast('Video downloaded ✦','success');
+  }catch(e){
+    // Fallback — open in new tab
+    window.open(url,'_blank');
+  }
+}
+
+function copyCaption(id){
+  const v=videos.find(v=>String(v.id)===String(id));
+  if(!v||!v.caption)return;
+  navigator.clipboard.writeText(v.caption).then(()=>toast('Caption copied!','success'));
+}
+async function deleteVideo(id){
+  await deleteVideoFromDB(id);
+  videos=videos.filter(v=>String(v.id)!==String(id));
+  renderGrid();updateStats();
+}
+async function clearLibrary(){
+  if(videos.length===0){toast('Library is already empty','info');return}
+  if(sb&&currentUser){
+    await sb.from('videos').delete().eq('user_id',currentUser.id);
+  } else {
+    localStorage.removeItem('lr_videos');
+  }
+  videos=[];renderGrid();updateStats();
+  toast('Library cleared','success');
+}
+
+// ══════════════════════════════
+// SETTINGS
+// ══════════════════════════════
+function switchSettings(section,el){
+  document.querySelectorAll('.settings-section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.settings-nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('settings-'+section).classList.add('active');
+  el.classList.add('active');
+}
+
+function saveProfile(){
+  const firstName = document.getElementById('s-first')?.value.trim();
+  const lastName = document.getElementById('s-last')?.value.trim();
+  const brand = document.getElementById('s-brand')?.value.trim();
+  if(firstName) localStorage.setItem('lx_first_name', firstName);
+  if(brand) localStorage.setItem('lx_brand', brand);
+  // Update display name in dashboard
+  const fullName = [firstName, lastName].filter(Boolean).join(' ');
+  const firstNameEl = document.getElementById('dash-first-name');
+  if(firstNameEl && firstName) firstNameEl.textContent = firstName;
+  toast('Profile saved ✦','success');
+}
+
+async function changePassword(){
+  const newPw = document.getElementById('s-new-password')?.value;
+  if(!newPw || newPw.length < 6){ toast('Password must be at least 6 characters','error'); return; }
+  try{
+    const { error } = await sb.auth.updateUser({ password: newPw });
+    if(error) throw error;
+    document.getElementById('s-new-password').value = '';
+    toast('Password updated ✦','success');
+  }catch(e){ toast('Failed to update password — please try again','error'); }
+}
+
+function resetContentProfile(){
+  if(!confirm('Reset your content profile? Your 7-day plan will be cleared and you\'ll need to complete onboarding again.')) return;
+  localStorage.removeItem('lx_profile');
+  localStorage.removeItem('lx_niche');
+  localStorage.removeItem('lx_goal');
+  localStorage.removeItem('lx_tone');
+  // Clear content plans from DB
+  if(sb && currentUser){
+    sb.from('content_plans').delete().eq('user_id', currentUser.id).then(()=>{});
+  }
+  toast('Content profile reset — redirecting to setup…','success');
+  setTimeout(()=>{ go('dashboard'); }, 1500);
+}
+
+async function requestAccountDeletion(){
+  if(!confirm('Are you sure you want to delete your account? All your videos, content plans and data will be permanently deleted. This cannot be undone.')) return;
+  try{
+    // Clear all user data
+    if(sb && currentUser){
+      await sb.from('videos').delete().eq('user_id', currentUser.id);
+      await sb.from('content_plans').delete().eq('user_id', currentUser.id);
+    }
+    localStorage.clear();
+    toast('Your data has been cleared. Contact support@luxclip.ai to complete account deletion.','info');
+    setTimeout(()=>signOut(), 2000);
+  }catch(e){ toast('Please contact support@luxclip.ai to delete your account','info'); }
+}
+
+// Load settings page with real user data
+function loadSettingsPage(){
+  if(!currentUser) return;
+  const email = document.getElementById('s-email');
+  if(email) email.value = currentUser.email || '';
+  const firstName = localStorage.getItem('lx_first_name') || currentUser.email?.split('@')[0] || '';
+  const brand = localStorage.getItem('lx_brand') || '';
+  if(document.getElementById('s-first')) document.getElementById('s-first').value = firstName;
+  if(document.getElementById('s-brand')) document.getElementById('s-brand').value = brand;
+}
+function toggleSwitch(el){el.classList.toggle('on')}
+function setNavActive(el){
+  document.querySelectorAll('#page-dashboard .nav-item').forEach(n=>n.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// ══════════════════════════════
+// PRICING
+// ══════════════════════════════
+function setPricingPeriod(p){
+  pricingPeriod=p;
+  document.getElementById('ptog-monthly').classList.toggle('active',p==='monthly');
+  document.getElementById('ptog-yearly').classList.toggle('active',p==='yearly');
+  const proEl=document.getElementById('pro-price');
+  const agEl=document.getElementById('agency-price');
+  const proPer=document.getElementById('pro-period');
+  const agPer=document.getElementById('agency-period');
+  if(p==='yearly'){
+    proEl.innerHTML='<span>$</span>20';agEl.innerHTML='<span>$</span>69';
+    proPer.textContent='per month, billed yearly';proPer.className='plan-period yearly';
+    agPer.textContent='per month, billed yearly';agPer.className='plan-period yearly';
+  } else {
+    proEl.innerHTML='<span>$</span>29';agEl.innerHTML='<span>$</span>99';
+    proPer.textContent='per month';proPer.className='plan-period';
+    agPer.textContent='per month';agPer.className='plan-period';
+  }
+}
+
+// ══════════════════════════════
+// MODAL
+// ══════════════════════════════
+function showUpgradeModal(){document.getElementById('upgrade-modal').style.display='flex'}
+function closeModal(){document.getElementById('upgrade-modal').style.display='none'}
+
+// ══════════════════════════════
+// TOAST
+// ══════════════════════════════
+function toast(msg,type='success'){
+  const c=document.getElementById('toast-container');
+  const el=document.createElement('div');
+  const cls={success:'toast-s',error:'toast-e',info:'toast-i'}[type]||'toast-s';
+  const icon={success:'✦',error:'✕',info:'ℹ'}[type]||'✦';
+  el.className='toast '+cls;
+  el.innerHTML=`<span>${icon}</span><span>${msg}</span>`;
+  c.appendChild(el);
+  setTimeout(()=>el.remove(),3200);
+}
+
+// ══════════════════════════════
+// UTILS
+// ══════════════════════════════
+function esc(str){return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+
+window.addEventListener('scroll',()=>{
+  const nav=document.getElementById('l-nav');
+  if(nav)nav.classList.toggle('scrolled',window.scrollY>40);
+});
+
+// ── BOOT ──
+bootApp(); function avChip(el,group){document.querySelectorAll('#av-'+group+'-chips .av-chip').forEach(c=>c.classList.remove('active-chip'));el.classList.add('active-chip');} function avGetChip(group){const el=document.querySelector('#av-'+group+'-chips .active-chip');return el?el.textContent.trim():'';} function avTab(name){['image','script','voice'].forEach(t=>{document.getElementById('av-tab-'+t).classList.toggle('active-tab',t===name);document.getElementById('av-pane-'+t).style.display=t===name?'block':'none';});} async function generateAvatar(){const intent=document.getElementById('av-intent').value.trim();if(!intent){document.getElementById('av-intent').focus();return;}const btn=document.getElementById('av-gen-btn');const err=document.getElementById('av-error');btn.disabled=true;btn.textContent='Generating...';err.style.display='none';const gender=document.getElementById('av-gender').value;const age=document.getElementById('av-age').value;const tone=avGetChip('tone');const env=avGetChip('env');const len=avGetChip('len');const sys=`You are a senior AI prompt engineer and creative director. Return ONLY valid JSON: {"image_prompt":{"subject":"","environment":"","action":"","camera_angle":"","lighting":"","style":"","details":""},"video_script":"","voice":{"type":"","tone":"","pace":""}}. Subject: ${gender} aged ${age}, cinematic photorealistic, centered facing forward visible shoulders. Environment: ${env}. Tone: ${tone}. Script length: ${len}. No explanations, only JSON.`;try{const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:sys,messages:[{role:'user',content:intent}]})});const data=await res.json();const raw=data.content.map(i=>i.text||'').join('');const parsed=JSON.parse(raw.replace(/```json|```/g,'').trim());window._avData=parsed;const ip=parsed.image_prompt||{};document.getElementById('av-image-fields').innerHTML=[{k:'subject',l:'Subject'},{k:'environment',l:'Environment'},{k:'action',l:'Action'},{k:'camera_angle',l:'Camera angle'},{k:'lighting',l:'Lighting'},{k:'style',l:'Style'},{k:'details',l:'Details'}].filter(f=>ip[f.k]).map(f=>`<div style="margin-bottom:8px"><div style="font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:2px">${f.l}</div><div style="font-size:.85rem;color:var(--text);line-height:1.6">${ip[f.k]}</div></div>`).join('');document.getElementById('av-script-text').textContent=parsed.video_script||'';const v=parsed.voice||{};document.getElementById('av-voice-fields').innerHTML=`<div style="display:flex;flex-direction:column;gap:10px"><div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border)"><span style="color:var(--muted);font-size:.85rem">Voice type</span><span style="color:var(--text);font-size:.85rem;font-weight:600">${v.type||'—'}</span></div><div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border)"><span style="color:var(--muted);font-size:.85rem">Tone</span><span style="color:var(--text);font-size:.85rem;font-weight:600">${v.tone||'—'}</span></div><div style="display:flex;justify-content:space-between;padding:8px 0"><span style="color:var(--muted);font-size:.85rem">Pace</span><span style="color:var(--text);font-size:.85rem;font-weight:600">${v.pace||'—'}</span></div></div>`;document.getElementById('av-results-col').style.display='block';avTab('image');}catch(e){err.textContent='Generation failed — try again.';err.style.display='block';console.error(e);}finally{btn.disabled=false;btn.textContent='✦ Generate Avatar Prompt';}} function copyAvImagePrompt(){const d=window._avData?.image_prompt||{};navigator.clipboard.writeText(Object.values(d).filter(Boolean).join('. '));toast('Copied ✦','success');} async function generateAvatarImage(){const d=window._avData?.image_prompt;if(!d){toast('Generate a prompt first','error');return;}const prompt=Object.values(d).filter(Boolean).join(', ');const btn=document.getElementById('av-falai-btn');btn.disabled=true;btn.textContent='Generating image...';try{const res=await fetch('https://tvshyswdwgwunzzrsqca.supabase.co/functions/v1/generate-avatar-image',{method:'POST',headers:{'Content-Type':'application/json','Authorization':`Bearer ${window.SUPABASE_ANON_KEY||''}`},body:JSON.stringify({prompt})});const data=await res.json();if(data.url){document.getElementById('av-generated-img').src=data.url;document.getElementById('av-image-result').style.display='block';toast('Avatar generated ✦','success');}else{throw new Error(data.error||'No image');}}catch(e){toast('Image generation failed','error');console.error(e);}finally{btn.disabled=false;btn.textContent='⚡ Generate Avatar Image with fal.ai';}} function saveAvatarToLibrary(){const img=document.getElementById('av-generated-img');if(!img||!img.src)return;const lib=JSON.parse(localStorage.getItem('lx_ad_library')||'[]');lib.unshift({id:Date.now(),src:img.src,type:'avatar',created:new Date().toISOString()});localStorage.setItem('lx_ad_library',JSON.stringify(lib));toast('Saved to Image Library ✦','success');}
+</script>
+<!-- ══════════════════════════════
+     ADMIN DASHBOARD
+══════════════════════════════ -->
+<div class="page" id="page-admin" style="display:none;background:var(--noir);min-height:100vh">
+
+  <!-- Admin Login Gate -->
+  <div id="admin-gate" style="display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px">
+    <div style="background:var(--panel);border:1px solid var(--border2);border-radius:16px;padding:40px;width:100%;max-width:400px">
+      <div style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;margin-bottom:4px">⚙ Admin</div>
+      <div style="font-size:.85rem;color:var(--muted);margin-bottom:28px">LuxClip AI Control Panel</div>
+      <div class="form-group" style="margin-bottom:16px">
+        <label class="form-label">Admin Password</label>
+        <input type="password" id="admin-password-input" class="form-input" placeholder="••••••••" onkeydown="if(event.key==='Enter')checkAdminPassword()">
+      </div>
+      <button class="btn btn-gold btn-md" style="width:100%" onclick="checkAdminPassword()">Enter Admin Panel →</button>
+      <div id="admin-gate-error" style="color:var(--red);font-size:.8rem;margin-top:10px;text-align:center;display:none">Incorrect password</div>
+      <div style="margin-top:16px;text-align:center">
+        <button class="btn btn-ghost btn-sm" onclick="go('dashboard')">← Back to Dashboard</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin Panel -->
+  <div id="admin-panel" style="display:none">
+    <!-- Top Bar -->
+    <div style="background:var(--noir2);border-bottom:1px solid var(--border);padding:14px 32px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100">
+      <div style="display:flex;align-items:center;gap:12px">
+        <div style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700">Lux<span style="color:var(--gold2);font-style:italic">Reel</span> <span style="font-size:.75rem;color:var(--gold);background:rgba(212,168,83,.1);border:1px solid var(--gold3);border-radius:4px;padding:2px 8px;vertical-align:middle">ADMIN</span></div>
+      </div>
+      <div style="display:flex;gap:10px">
+        <button class="btn btn-ghost btn-sm" onclick="loadAdminDashboard()">↺ Refresh</button>
+        <button class="btn btn-ghost btn-sm" onclick="go('dashboard')">← Dashboard</button>
+        <button class="btn btn-ghost btn-sm" onclick="adminLogout()">Logout</button>
+      </div>
+    </div>
+
+    <div style="padding:32px;max-width:1200px;margin:0 auto">
+
+      <!-- Stats Row -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;margin-bottom:32px">
+        <div style="background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:20px">
+          <div style="font-size:2rem;font-weight:700;color:var(--gold)" id="admin-stat-users">—</div>
+          <div style="font-size:.8rem;color:var(--muted);margin-top:4px">Total Users</div>
+        </div>
+        <div style="background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:20px">
+          <div style="font-size:2rem;font-weight:700;color:var(--gold)" id="admin-stat-videos">—</div>
+          <div style="font-size:.8rem;color:var(--muted);margin-top:4px">Total Videos</div>
+        </div>
+        <div style="background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:20px">
+          <div style="font-size:2rem;font-weight:700;color:var(--gold)" id="admin-stat-new">—</div>
+          <div style="font-size:.8rem;color:var(--muted);margin-top:4px">New This Week</div>
+        </div>
+        <div style="background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:20px">
+          <div style="font-size:2rem;font-weight:700;color:var(--gold)" id="admin-stat-plans">—</div>
+          <div style="font-size:.8rem;color:var(--muted);margin-top:4px">Content Plans</div>
+        </div>
+        <div style="background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:20px">
+          <div style="font-size:2rem;font-weight:700;color:#38ef7d" id="admin-stat-pro">—</div>
+          <div style="font-size:.8rem;color:var(--muted);margin-top:4px">Pro Users</div>
+        </div>
+        <div style="background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:20px">
+          <div style="font-size:2rem;font-weight:700;color:#38ef7d" id="admin-stat-mrr">—</div>
+          <div style="font-size:.8rem;color:var(--muted);margin-top:4px">Est. MRR</div>
+        </div>
+      </div>
+
+      <!-- Search & Filters -->
+      <div style="display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap">
+        <input id="admin-search" class="prompt-textarea" style="height:auto;padding:10px 14px;font-size:.85rem;flex:1;min-width:200px" placeholder="Search by email…" oninput="filterAdminUsers()">
+        <select id="admin-filter-plan" class="prompt-textarea" style="height:auto;padding:10px 14px;font-size:.85rem" onchange="filterAdminUsers()">
+          <option value="all">All Plans</option>
+          <option value="free">Free</option>
+          <option value="pro">Pro</option>
+          <option value="agency">Agency</option>
+        </select>
+        <button class="btn btn-outline btn-sm" onclick="exportUsersCSV()">Export CSV ↓</button>
+      </div>
+
+      <!-- Users Table -->
+      <div style="background:var(--panel);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:32px">
+        <div style="padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between">
+          <div style="font-weight:600;font-size:.95rem">Users</div>
+          <div style="font-size:.8rem;color:var(--muted)" id="admin-user-count">Loading…</div>
+        </div>
+        <div style="overflow-x:auto">
+          <table style="width:100%;border-collapse:collapse" id="admin-users-table">
+            <thead>
+              <tr style="border-bottom:1px solid var(--border)">
+                <th style="padding:10px 20px;text-align:left;font-size:.75rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.08em">Email</th>
+                <th style="padding:10px 16px;text-align:left;font-size:.75rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.08em">Joined</th>
+                <th style="padding:10px 16px;text-align:left;font-size:.75rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.08em">Plan</th>
+                <th style="padding:10px 16px;text-align:center;font-size:.75rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.08em">Videos</th>
+                <th style="padding:10px 16px;text-align:center;font-size:.75rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.08em">Plans</th>
+                <th style="padding:10px 16px;text-align:left;font-size:.75rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.08em">Last Active</th>
+                <th style="padding:10px 16px;text-align:center;font-size:.75rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.08em">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="admin-users-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Recent Videos -->
+      <div style="background:var(--panel);border:1px solid var(--border);border-radius:10px;overflow:hidden">
+        <div style="padding:16px 20px;border-bottom:1px solid var(--border)">
+          <div style="font-weight:600;font-size:.95rem">Recent Videos Generated</div>
+        </div>
+        <div style="overflow-x:auto">
+          <table style="width:100%;border-collapse:collapse">
+            <thead>
+              <tr style="border-bottom:1px solid var(--border)">
+                <th style="padding:10px 20px;text-align:left;font-size:.75rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.08em">User</th>
+                <th style="padding:10px 16px;text-align:left;font-size:.75rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.08em">Prompt</th>
+                <th style="padding:10px 16px;text-align:left;font-size:.75rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.08em">Status</th>
+                <th style="padding:10px 16px;text-align:left;font-size:.75rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.08em">Created</th>
+                <th style="padding:10px 16px;text-align:center;font-size:.75rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.08em">Actions</th>
+              </tr>
+            </tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+</div>
+<script src="app.v2.js"></script>
+</body>
+</html>
