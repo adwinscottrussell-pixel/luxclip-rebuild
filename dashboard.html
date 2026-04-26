@@ -1,38 +1,52 @@
-<script>
-console.log("JS LOADED");
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>LuxClip Dashboard</title>
+</head>
 
-async function upgrade() {
-  console.log("UPGRADE CLICKED");
+<body>
 
-  try {
-    const res = await fetch("/api/create-checkout", {
-      method: "POST"
-    });
+  <h1>LuxClip Dashboard</h1>
 
-    // ✅ Read raw response first
-    const text = await res.text();
-    console.log("RAW RESPONSE:", text);
+  <button onclick="upgrade()">Upgrade to Pro</button>
 
-    let data;
+  <script>
+    console.log("JS LOADED");
 
-    try {
-      data = JSON.parse(text);
-    } catch (e) {
-      alert("Server returned invalid response");
-      return;
+    async function upgrade() {
+      console.log("UPGRADE CLICKED");
+
+      try {
+        const res = await fetch("/api/create-checkout", {
+          method: "POST"
+        });
+
+        const text = await res.text();
+        console.log("RAW RESPONSE:", text);
+
+        let data;
+
+        try {
+          data = JSON.parse(text);
+        } catch (e) {
+          alert("Server returned invalid response");
+          return;
+        }
+
+        if (data.error) {
+          alert("Error: " + data.error);
+          return;
+        }
+
+        window.location.href = data.url;
+
+      } catch (err) {
+        console.error(err);
+        alert("Upgrade failed");
+      }
     }
+  </script>
 
-    if (data.error) {
-      alert("Error: " + data.error);
-      return;
-    }
-
-    // ✅ Redirect to Stripe
-    window.location.href = data.url;
-
-  } catch (err) {
-    console.error(err);
-    alert("Upgrade failed");
-  }
-}
-</script>
+</body>
+</html>
